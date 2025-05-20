@@ -1,0 +1,160 @@
+<!-- app.component.html -->
+<div class="app-container">
+  <!-- Navigation Bar -->
+  <nav
+    class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top"
+  >
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <img src="/images/logoAs.png" alt="ShopLogo" height="50" />
+      </a>
+
+      <button
+        class="navbar-toggler"
+        type="button"
+        (click)="isNavCollapsed = !isNavCollapsed"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" [class.show]="!isNavCollapsed">
+        <div class="d-flex flex-grow-1 mx-lg-4 my-2 my-lg-0">
+          <div class="input-group search-box">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Search for products..."
+              #searchInput
+              (keyup.enter)="search(searchInput.value)"
+            />
+            <button
+              class="btn btn-primary"
+              type="button"
+              (click)="search(searchInput.value)"
+            >
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="user-actions d-flex align-items-center">
+          <button class="btn btn-outline-secondary me-3" routerLink="/login">
+            <i class="fas fa-user me-1"></i> Login
+          </button>
+          <button
+            class="btn btn-outline-dark position-relative"
+            routerLink="/cart"
+          >
+            <i class="fas fa-shopping-cart"></i>
+            <span *ngIf="cartCount > 0" class="cart-badge">{{
+              cartCount
+            }}</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="container my-5">
+    <h2 class="section-title">Featured Products</h2>
+
+    <div class="row g-4">
+      <div class="col-12 col-md-6 col-lg-3" *ngFor="let product of products">
+        <div class="card product-card h-100">
+          <div
+            *ngIf="product.badge"
+            class="badge position-absolute"
+            [class.bg-danger]="product.badge === 'sale'"
+            [class.bg-success]="product.badge === 'new'"
+            style="top: 10px; right: 10px"
+          >
+            {{ product.badge === "sale" ? "Sale" : "New" }}
+          </div>
+          <img
+            [src]="product.image"
+            class="card-img-top product-img"
+            [alt]="product.name"
+          />
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-start mb-2">
+              <h5 class="product-title mb-0">{{ product.name }}</h5>
+              <div class="rating-stars">
+                <i
+                  class="fas fa-star"
+                  *ngFor="let star of getStars(product.rating).full"
+                ></i>
+                <i
+                  class="fas fa-star-half-alt"
+                  *ngIf="getStars(product.rating).half"
+                ></i>
+                <i
+                  class="far fa-star"
+                  *ngFor="let star of getStars(product.rating).empty"
+                ></i>
+                <small class="ms-1">({{ product.reviews }})</small>
+              </div>
+            </div>
+            <p class="small mb-3">{{ product.description }}</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <h5 class="product-price mb-0">
+                {{ product.price | currency : "INR" }}
+              </h5>
+              <button
+                class="btn btn-sm btn-primary"
+                [routerLink]="['/product', product.id]"
+              >
+                View
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white py-4 mt-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 mb-4 mb-md-0">
+          <h5>About Us</h5>
+          <p class="small">
+            We provide the best quality products with fast delivery and
+            excellent customer service.
+          </p>
+        </div>
+        <div class="col-md-4 mb-4 mb-md-0">
+          <h5>Quick Links</h5>
+          <ul class="list-unstyled small">
+            <li><a routerLink="/" class=" ">Home</a></li>
+            <li><a routerLink="/products" class=" ">Products</a></li>
+            <li><a routerLink="/about" class=" ">About</a></li>
+            <li><a routerLink="/contact" class=" ">Contact</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h5>Stay Connected</h5>
+          <div class="social-icons">
+            <a href="https://www.facebook.com/" class="me-2"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+            <a href="https://x.com/" class="me-2"
+              ><i class="fab fa-twitter"></i
+            ></a>
+            <a href="https://www.instagram.com/" class="me-2"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a href="https://www.linkedin.com/home" class=" "
+              ><i class="fab fa-linkedin-in"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+      <hr class="my-4 bg-secondary" />
+      <div class="text-center small">
+        &copy; {{ currentYear }} AS - Shopping Cart - All rights reserved.
+      </div>
+    </div>
+  </footer>
+</div>
