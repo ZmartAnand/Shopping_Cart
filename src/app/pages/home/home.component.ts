@@ -229,7 +229,9 @@ export class HomeComponent {
   filteredProducts = this.products;
   isNavCollapsed = true;
 
-  constructor() {}
+  constructor() {
+    console.log("test");
+  }
 
   getStars(rating: number) {
     const fullStars = Math.floor(rating);
