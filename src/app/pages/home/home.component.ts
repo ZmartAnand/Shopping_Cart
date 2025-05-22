@@ -1,10 +1,11 @@
 import { CommonModule } from "@angular/common";
 import { Component } from "@angular/core";
-import { RouterLink } from "@angular/router";
+import { Router, RouterLink } from "@angular/router";
+import { NavbarComponent } from "../../navbar/navbar.component";
 
 @Component({
   selector: "app-home",
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, NavbarComponent],
   templateUrl: "./home.component.html",
   styleUrl: "./home.component.css",
 })
@@ -20,11 +21,11 @@ export class HomeComponent {
       rating: 4.5,
       reviews: 128,
       image: "https://m.media-amazon.com/images/I/71meEZBQieL._SX522_.jpg",
-      badge: "sale",
+      badge: null,
     },
     {
       id: 2,
-      name: "Smart Watch Pro",
+      name: "Smart Watch Ultra Pro",
       description: "Fitness tracker with heart rate monitor and GPS",
       price: 1399,
       rating: 4,
@@ -42,7 +43,7 @@ export class HomeComponent {
       reviews: 42,
       image:
         "https://m.media-amazon.com/images/I/31onMzvkznL._SX300_SY300_QL70_FMwebp_.jpg",
-      badge: "new",
+      badge: null,
     },
     {
       id: 4,
@@ -63,7 +64,7 @@ export class HomeComponent {
       rating: 4.2,
       reviews: 110,
       image: "https://m.media-amazon.com/images/I/81Dl7qzd40L._SX522_.jpg",
-      badge: "sale",
+      badge: null,
     },
     {
       id: 6,
@@ -84,7 +85,7 @@ export class HomeComponent {
       reviews: 142,
       image:
         "https://m.media-amazon.com/images/I/41eGK1l-4ZL._SX300_SY300_QL70_FMwebp_.jpg",
-      badge: "new",
+      badge: null,
     },
     {
       id: 8,
@@ -104,7 +105,7 @@ export class HomeComponent {
       rating: 4.3,
       reviews: 67,
       image: "https://m.media-amazon.com/images/I/61ZujDyiFwL._SX679_.jpg",
-      badge: "sale",
+      badge: null,
     },
     {
       id: 10,
@@ -125,7 +126,7 @@ export class HomeComponent {
       rating: 4.0,
       reviews: 43,
       image: "https://m.media-amazon.com/images/I/81hgjKwsdHL._SL1500_.jpg",
-      badge: "new",
+      badge: null,
     },
     {
       id: 12,
@@ -157,7 +158,7 @@ export class HomeComponent {
       reviews: 88,
       image:
         "https://m.media-amazon.com/images/I/31cZyGba6IL._SX300_SY300_QL70_FMwebp_.jpg",
-      badge: "sale",
+      badge: null,
     },
     {
       id: 15,
@@ -177,7 +178,7 @@ export class HomeComponent {
       rating: 4.4,
       reviews: 55,
       image: "https://m.media-amazon.com/images/I/51T0RbnCy6L._SX679_.jpg",
-      badge: "new",
+      badge: null,
     },
     {
       id: 17,
@@ -199,7 +200,7 @@ export class HomeComponent {
       reviews: 62,
       image:
         "https://m.media-amazon.com/images/I/41YKY64LYpL._SX300_SY300_QL70_FMwebp_.jpg",
-      badge: "sale",
+      badge: null,
     },
     {
       id: 19,
@@ -221,15 +222,15 @@ export class HomeComponent {
       reviews: 28,
       image:
         "https://m.media-amazon.com/images/I/41N-ZNnbEVL._SX300_SY300_QL70_FMwebp_.jpg",
-      badge: "new",
+      badge: null,
     },
   ];
 
-  cartCount = 2;
-  filteredProducts = this.products;
-  isNavCollapsed = true;
+  // cartCount = 2;
+  // filteredProducts = this.products;
+  // isNavCollapsed = true;
 
-  constructor() {
+  constructor(private router: Router) {
     console.log("test");
   }
 
@@ -245,22 +246,25 @@ export class HomeComponent {
     };
   }
 
-  search(term: string) {
-    if (!term) {
-      this.filteredProducts = this.products;
-      return;
-    }
+  // search(term: string) {
+  //   if (!term) {
+  //     this.filteredProducts = this.products;
+  //     return;
+  //   }
 
-    term = term.toLowerCase();
-    this.filteredProducts = this.products.filter(
-      (product) =>
-        product.name.toLowerCase().includes(term) ||
-        product.description.toLowerCase().includes(term)
-    );
-  }
+  //   term = term.toLowerCase();
+  //   this.filteredProducts = this.products.filter(
+  //     (product) =>
+  //       product.name.toLowerCase().includes(term) ||
+  //       product.description.toLowerCase().includes(term)
+  //   );
+  // }
 
-  clearSearch(searchInput: HTMLInputElement) {
-    searchInput.value = "";
-    this.search("");
+  // clearSearch(searchInput: HTMLInputElement) {
+  //   searchInput.value = "";
+  //   this.search("");
+  // }
+  addtocart() {
+    this.router.navigate(["cart"]);
   }
 }

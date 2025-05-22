@@ -72,7 +72,7 @@ main {
   .product-img {
     height: 200px;
     object-fit: contain;
-    background-color: #f9f9f9;
+    /* background-color: #f9f9f9; */
     padding: 20px;
   }
 

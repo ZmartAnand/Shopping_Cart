@@ -1,0 +1,43 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <img src="/images/logoAs.png" alt="ShopLogo" height="50" />
+    </a>
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      (click)="isNavCollapsed = !isNavCollapsed"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" [class.show]="!isNavCollapsed">
+      <div class="d-flex flex-grow-1 mx-lg-4 my-2 my-lg-0">
+        <div class="input-group search-box">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Search for products..."
+          />
+          <button class="btn btn-primary" type="button">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="user-actions d-flex align-items-center">
+        <button class="btn btn-outline-secondary me-3" routerLink="/login">
+          <i class="fas fa-user me-1"></i> Logout
+        </button>
+        <button
+          class="btn btn-outline-dark position-relative"
+          routerLink="/cart"
+        >
+          <i class="fas fa-shopping-cart"></i>
+          <span *ngIf="cartCount > 0" class="cart-badge">{{ cartCount }}</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
