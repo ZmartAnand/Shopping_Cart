@@ -2,6 +2,7 @@ import { CommonModule } from "@angular/common";
 import { Component } from "@angular/core";
 import { Router, RouterLink } from "@angular/router";
 import { NavbarComponent } from "../../navbar/navbar.component";
+import { CartService } from "../../services/cart.service";
 
 @Component({
   selector: "app-home",
@@ -225,13 +226,13 @@ export class HomeComponent {
       badge: null,
     },
   ];
+  cartItems: any;
 
-  // cartCount = 2;
-  // filteredProducts = this.products;
-  // isNavCollapsed = true;
-
-  constructor(private router: Router) {
-    console.log("test");
+  constructor(private router: Router, private cartService: CartService) {
+    this.cartItems = this.cartService.getCartItems();
+  }
+  isInCart(product: any): boolean {
+    return this.cartItems.some((p: any) => p.id === product.id);
   }
 
   getStars(rating: number) {
@@ -246,25 +247,7 @@ export class HomeComponent {
     };
   }
 
-  // search(term: string) {
-  //   if (!term) {
-  //     this.filteredProducts = this.products;
-  //     return;
-  //   }
-
-  //   term = term.toLowerCase();
-  //   this.filteredProducts = this.products.filter(
-  //     (product) =>
-  //       product.name.toLowerCase().includes(term) ||
-  //       product.description.toLowerCase().includes(term)
-  //   );
-  // }
-
-  // clearSearch(searchInput: HTMLInputElement) {
-  //   searchInput.value = "";
-  //   this.search("");
-  // }
-  addtocart() {
-    this.router.navigate(["cart"]);
+  addtocart(product: any) {
+    this.cartService.addToCart(product);
   }
 }

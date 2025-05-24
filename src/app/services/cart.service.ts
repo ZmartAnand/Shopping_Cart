@@ -1,40 +1,32 @@
+// cart.service.ts
 import { Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
 
-export interface Product {
-  id: number;
-  name: string;
-  price: number;
-  image: string;
-  // add other properties if needed
-}
-
 @Injectable({ providedIn: "root" })
 export class CartService {
-  private items: Product[] = [];
-  private cartSubject = new BehaviorSubject<Product[]>([]);
+  private cartItems: any[] = [];
+  private cartCountSubject = new BehaviorSubject<number>(0);
 
-  cart$ = this.cartSubject.asObservable();
-
-  addToCart(product: Product) {
-    this.items.push(product);
-    this.cartSubject.next(this.items);
-  }
-
-  removeFromCart(productId: number) {
-    this.items = this.items.filter((item) => item.id !== productId);
-    this.cartSubject.next(this.items);
-  }
+  cartCount$ = this.cartCountSubject.asObservable();
 
   getCartItems() {
-    return [...this.items];
+    return this.cartItems;
   }
 
-  getCartCount() {
-    return this.items.length;
+  addToCart(product: any) {
+    const existing = this.cartItems.find((item) => item.id === product.id);
+    if (!existing) {
+      this.cartItems.push(product);
+      this.cartCountSubject.next(this.cartItems.length);
+    }
   }
 
-  getTotalPrice() {
-    return this.items.reduce((total, item) => total + item.price, 0);
+  removeFromCart(product: any) {
+    this.cartItems = this.cartItems.filter((item) => item.id !== product.id);
+    this.updateCartCount();
+  }
+
+  updateCartCount() {
+    this.cartCountSubject.next(this.cartItems.length);
   }
 }

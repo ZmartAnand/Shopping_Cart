@@ -17,8 +17,8 @@ export class LoginComponent {
   constructor(private router: Router) {}
 
   login() {
-    if (this.username === "admin" && this.password === "admin") {
-      alert("Login successful!");
+    if (this.username === "ASshopping" && this.password === "admin") {
+      // alert("Login successful!");
       this.router.navigate(["/home"]);
     } else {
       alert("Invalid credentials");
