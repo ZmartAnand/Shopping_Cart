@@ -1,7 +1,6 @@
-// navbar.component.ts
 import { Component, OnInit } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { CartService } from "../services/cart.service";
+import { CartService } from "../../services/cart.service";
 import { RouterLink } from "@angular/router";
 
 @Component({

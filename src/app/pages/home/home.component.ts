@@ -100,7 +100,7 @@ export class HomeComponent {
     },
     {
       id: 9,
-      name: "USB-C Hub 6-in-1",
+      name: "USB-C Hub 6-in-1, Multi-port",
       description: "Multi-port adapter with HDMI and Ethernet support",
       price: 899,
       rating: 4.3,
@@ -110,8 +110,8 @@ export class HomeComponent {
     },
     {
       id: 10,
-      name: "Portable SSD 1TB",
-      description: "High-speed external storage with USB 3.1",
+      name: "Portable SSD 1TB,external storage",
+      description: "High-speed external storage with USB 3.1, portable SSD",
       price: 10999,
       rating: 4.7,
       reviews: 95,
@@ -174,7 +174,7 @@ export class HomeComponent {
     {
       id: 16,
       name: "wipro 9-Watt B22 WiFi Smart LED Bulb",
-      description: "Control brightness and color with your phone",
+      description: "Control brightness color with your phone",
       price: 589,
       rating: 4.4,
       reviews: 55,

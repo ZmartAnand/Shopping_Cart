@@ -19,11 +19,30 @@ export class CartService {
       this.cartItems.push(product);
       this.cartCountSubject.next(this.cartItems.length);
     }
+    this.savedCartItems();
+  }
+
+  private savedCartItems() {
+    const user = JSON.parse(localStorage.getItem("currentUser") || "[]");
+    if (user && user.username) {
+      // Check if the user and email exist
+      localStorage.setItem(
+        `cart_${user.username}`,
+        JSON.stringify(this.cartItems)
+      ); // Use email as the unique identifier
+    }
   }
 
   removeFromCart(product: any) {
     this.cartItems = this.cartItems.filter((item) => item.id !== product.id);
     this.updateCartCount();
+  }
+
+  loadUserCart(email: string) {
+    console.log("email:", email);
+    const savedCart = localStorage.getItem(`cart_${email}`);
+    console.log("saved", savedCart);
+    this.cartItems = savedCart ? JSON.parse(savedCart) : [];
   }
 
   updateCartCount() {

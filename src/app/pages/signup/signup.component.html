@@ -1,0 +1,94 @@
+<div class="d-flex justify-content-center align-items-center vh-100 bg-light">
+  <div
+    class="card shadow border-0 p-4"
+    style="max-width: 400px; width: 100%; border-radius: 1rem"
+  >
+    <h3 class="text-center mb-4 text-primary fw-bold">
+      <i class="bi bi-person-plus-fill me-2"></i> Create Account
+    </h3>
+
+    <form #signupForm="ngForm" (ngSubmit)="signup()" novalidate>
+      <div class="mb-3">
+        <label class="form-label">Username</label>
+        <input
+          type="text"
+          name="username"
+          class="form-control"
+          required
+          minlength="4"
+          [(ngModel)]="username"
+          #usernameRef="ngModel"
+        />
+        <div
+          *ngIf="
+            usernameRef.invalid && (usernameRef.dirty || usernameRef.touched)
+          "
+          class="text-danger small mt-1"
+        >
+          Username is required (min 4 chars).
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Password</label>
+        <input
+          type="password"
+          name="password"
+          class="form-control"
+          required
+          minlength="4"
+          [(ngModel)]="password"
+          #passwordRef="ngModel"
+        />
+        <div
+          *ngIf="
+            passwordRef.invalid && (passwordRef.dirty || passwordRef.touched)
+          "
+          class="text-danger small mt-1"
+        >
+          Password is required (min 4 chars).
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Confirm Password</label>
+        <input
+          type="password"
+          name="confirmPassword"
+          class="form-control"
+          required
+          [(ngModel)]="confirmPassword"
+          #confirmRef="ngModel"
+        />
+        <div
+          *ngIf="password !== confirmPassword && confirmRef.touched"
+          class="text-danger small mt-1"
+        >
+          Passwords do not match.
+        </div>
+      </div>
+
+      <div class="d-grid">
+        <button
+          class="btn btn-success"
+          type="submit"
+          [disabled]="signupForm.invalid || password !== confirmPassword"
+        >
+          <i class="bi bi-person-check-fill me-1"></i> Sign Up
+        </button>
+      </div>
+    </form>
+
+    <div class="mt-3 text-center">
+      <small class="text-muted">
+        Already have an account?
+        <a
+          class="text-decoration-none fw-semibold"
+          (click)="movetologin()"
+          style="cursor: pointer"
+          >Login here</a
+        >
+      </small>
+    </div>
+  </div>
+</div>

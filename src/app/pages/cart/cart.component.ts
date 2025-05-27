@@ -10,20 +10,10 @@ import { CartService } from "../../services/cart.service";
 })
 export class CartComponent {
   cartItems: any[] = [];
-  //   {
-  //     id: 1,
-  //     name: "Premium Wireless Headphones",
-  //     price: 19999,
-  //     image: "https://m.media-amazon.com/images/I/71meEZBQieL._SX522_.jpg",
-  //   },
-  //   {
-  //     id: 2,
-  //     name: "Smart Watch Pro",
-  //     price: 1399,
-  //     image:
-  //       "https://m.media-amazon.com/images/I/41gLj+50LFL._SY300_SX300_.jpg",
-  //   },
-  // ];
+
+  ngOnInit(): void {
+    this.cartItems = this.cartService.getCartItems();
+  }
 
   removeFromCart(item: any) {
     this.cartService.removeFromCart(item);
@@ -34,8 +24,4 @@ export class CartComponent {
     return this.cartItems.reduce((total, item) => total + item.price, 0);
   }
   constructor(private cartService: CartService) {}
-
-  ngOnInit(): void {
-    this.cartItems = this.cartService.getCartItems();
-  }
 }
