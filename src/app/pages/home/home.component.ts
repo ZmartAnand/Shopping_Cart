@@ -1,7 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component } from "@angular/core";
 import { Router, RouterLink } from "@angular/router";
-import { NavbarComponent } from "../../navbar/navbar.component";
+import { NavbarComponent } from "../navbar/navbar.component";
 import { CartService } from "../../services/cart.service";
 
 @Component({
