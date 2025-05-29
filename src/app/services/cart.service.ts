@@ -39,10 +39,10 @@ export class CartService {
   }
 
   loadUserCart(email: string) {
-    console.log("email:", email);
     const savedCart = localStorage.getItem(`cart_${email}`);
     console.log("saved", savedCart);
     this.cartItems = savedCart ? JSON.parse(savedCart) : [];
+    this.updateCartCount();
   }
 
   updateCartCount() {

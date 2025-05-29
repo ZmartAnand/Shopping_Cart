@@ -17,9 +17,14 @@ export class NavbarComponent implements OnInit {
   constructor(private cartService: CartService) {}
 
   ngOnInit() {
+    const user = JSON.parse(localStorage.getItem("currentUser") || "{}");
+
+    if (user?.username) {
+      this.cartService.loadUserCart(user.username); // Load user's cart
+    }
+
     this.cartService.cartCount$.subscribe((count) => {
       this.cartCount = count;
-      this.cartCount = 0;
     });
   }
 }
