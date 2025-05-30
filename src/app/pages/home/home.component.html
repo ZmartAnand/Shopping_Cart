@@ -10,7 +10,7 @@
 
     <div class="row g-4">
       <div class="col-12 col-md-6 col-lg-3" *ngFor="let product of products">
-        <div class="card product-card h-100">
+        <div class="card product-card h-100 mh-100 min-h-100">
           <div
             *ngIf="product.badge"
             class="badge position-absolute"
@@ -25,7 +25,7 @@
             class="card-img-top product-img"
             [alt]="product.name"
           />
-          <div class="card-body">
+          <div class="card-body d-flex flex-column justify-content-between">
             <div class="d-flex justify-content-between align-items-start mb-2">
               <h5 class="product-title mb-0">{{ product.name }}</h5>
               <div class="rating-stars">
@@ -49,20 +49,19 @@
               <h5 class="product-price mb-0">
                 {{ product.price | currency : "INR" }}
               </h5>
-
+              @if(!isInCart(product)){
               <button
                 class="btn btn-sm btn-primary"
-                *ngIf="!isInCart(product); else goToCart"
                 (click)="addtocart(product)"
               >
                 Add To Cart
               </button>
+              } @else {
+              <button class="btn btn-sm btn-primary" routerLink="/cart">
+                Go To Cart
+              </button>
 
-              <ng-template #goToCart>
-                <button class="btn btn-sm btn-primary" routerLink="/cart">
-                  Go To Cart
-                </button>
-              </ng-template>
+              }
             </div>
           </div>
         </div>
@@ -71,45 +70,52 @@
   </main>
 
   <!-- Footer -->
-  <footer class="bg-dark text-white py-4 mt-5">
+  <footer class="footer bg-dark text-light pt-5 pb-4 mt-5">
     <div class="container">
-      <div class="row">
-        <div class="col-md-4 mb-4 mb-md-0">
-          <h5>About Us</h5>
-          <p class="small">
-            We provide the best quality products with fast delivery and
-            excellent customer service.
+      <div class="row gy-4">
+        <!-- Logo & Intro -->
+        <div class="col-md-4">
+          <h4 class="fw-bold mb-3">AS Shop</h4>
+          <p class="text-light small">
+            Your one-stop shop for premium products, lightning-fast delivery,
+            and friendly support.
           </p>
         </div>
-        <div class="col-md-4 mb-4 mb-md-0">
-          <h5>Quick Links</h5>
-          <ul class="list-unstyled small">
-            <li><a routerLink="/home" class=" ">Home</a></li>
-            <li><a routerLink="/cart" class=" ">Cart</a></li>
-            <li><a routerLink="/about" class=" ">About Us</a></li>
+
+        <!-- Useful Links -->
+        <div class="col-md-4">
+          <h5 class="fw-semibold mb-3">Quick Links</h5>
+          <ul class="list-unstyled">
+            <li><a routerLink="/home" class="footer-link">🏠 Home</a></li>
+            <li><a routerLink="/cart" class="footer-link">🛒 Cart</a></li>
+            <li><a routerLink="/about" class="footer-link">ℹ️ About Us</a></li>
           </ul>
         </div>
+
+        <!-- Social Media -->
         <div class="col-md-4">
-          <h5>Stay Connected</h5>
-          <div class="social-icons">
-            <a href="https://www.facebook.com/" class="me-2"
-              ><i class="fab fa-facebook-f"></i
+          <h5 class="fw-semibold mb-3">Follow Us</h5>
+          <div class="d-flex gap-3">
+            <a href="https://facebook.com" target="_blank" class="footer-icon"
+              ><i class="bi bi-facebook"></i
             ></a>
-            <a href="https://x.com/" class="me-2"
-              ><i class="fab fa-twitter"></i
+            <a href="https://github.com/" target="_blank" class="footer-icon"
+              ><i class="fa-brands fa-github"></i
             ></a>
-            <a href="https://www.instagram.com/" class="me-2"
-              ><i class="fab fa-instagram"></i
+            <a href="https://instagram.com" target="_blank" class="footer-icon"
+              ><i class="bi bi-instagram"></i
             ></a>
-            <a href="https://www.linkedin.com/home" class=" "
-              ><i class="fab fa-linkedin-in"></i
+            <a href="https://linkedin.com" target="_blank" class="footer-icon"
+              ><i class="bi bi-linkedin"></i
             ></a>
           </div>
         </div>
       </div>
-      <hr class="my-4 bg-secondary" />
-      <div class="text-center small">
-        &copy; {{ currentYear }} AS - Shopping Cart - All rights reserved.
+
+      <hr class="my-4 border-secondary" />
+      <div class="text-center small text-secondary">
+        &copy; {{ currentYear }} <strong>AS - Shopping Cart</strong>. All rights
+        reserved.
       </div>
     </div>
   </footer>

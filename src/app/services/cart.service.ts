@@ -8,6 +8,10 @@ export class CartService {
   private cartCountSubject = new BehaviorSubject<number>(0);
 
   cartCount$ = this.cartCountSubject.asObservable();
+  constructor() {
+    const user = JSON.parse(localStorage.getItem("currentUser") || "[]");
+    this.loadUserCart(user.username);
+  }
 
   getCartItems() {
     return this.cartItems;
@@ -16,25 +20,29 @@ export class CartService {
   addToCart(product: any) {
     const existing = this.cartItems.find((item) => item.id === product.id);
     if (!existing) {
+      product.quantity = 1; // Initialize quantity
       this.cartItems.push(product);
-      this.cartCountSubject.next(this.cartItems.length);
+    } else {
+      existing.quantity += 1; // If exists, increase quantity
     }
-    this.savedCartItems();
+    this.saveCartItemsToLocal();
+    this.updateCartCount();
   }
 
-  private savedCartItems() {
+  saveCartItemsToLocal() {
     const user = JSON.parse(localStorage.getItem("currentUser") || "[]");
-    if (user && user.username) {
-      // Check if the user and email exist
+    if (user?.username) {
       localStorage.setItem(
         `cart_${user.username}`,
         JSON.stringify(this.cartItems)
-      ); // Use email as the unique identifier
+      );
     }
+    this.updateCartCount();
   }
 
   removeFromCart(product: any) {
     this.cartItems = this.cartItems.filter((item) => item.id !== product.id);
+    this.saveCartItemsToLocal();
     this.updateCartCount();
   }
 

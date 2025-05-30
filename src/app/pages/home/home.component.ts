@@ -228,10 +228,10 @@ export class HomeComponent {
   ];
   cartItems: any;
 
-  constructor(private router: Router, private cartService: CartService) {
-    this.cartItems = this.cartService.getCartItems();
-  }
+  constructor(private router: Router, private cartService: CartService) {}
+
   isInCart(product: any): boolean {
+    this.cartItems = this.cartService.getCartItems();
     return this.cartItems.some((p: any) => p.id === product.id);
   }
 
