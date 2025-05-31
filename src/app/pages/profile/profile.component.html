@@ -1,0 +1,16 @@
+<div class="container mt-5">
+  <h2 class="mb-4">Your Profile</h2>
+  <div class="card p-4 shadow">
+    <div class="mb-3">
+      <label class="form-label">Username:</label>
+      <p class="form-control-plaintext">{{ user?.username }}</p>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Email:</label>
+      <p class="form-control-plaintext">{{ user?.email }}</p>
+    </div>
+    <button class="btn btn-outline-primary" routerLink="/home">
+      Back to Home
+    </button>
+  </div>
+</div>
