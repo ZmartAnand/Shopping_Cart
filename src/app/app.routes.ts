@@ -5,12 +5,14 @@ import { ProfileComponent } from "./pages/profile/profile.component";
 import { HomeComponent } from "./pages/home/home.component";
 import { CartComponent } from "./pages/cart/cart.component";
 import { AboutComponent } from "./pages/about/about.component";
+import { EditProfileComponent } from "./pages/edit-profile/edit-profile.component";
 
 export const routes: Routes = [
   { path: "", redirectTo: "login", pathMatch: "full" },
   { path: "signup", component: SignupComponent },
   { path: "login", component: LoginComponent },
   { path: "profile", component: ProfileComponent },
+  { path: "edit-profile", component: EditProfileComponent },
   { path: "home", component: HomeComponent },
   { path: "cart", component: CartComponent },
   { path: "about", component: AboutComponent },

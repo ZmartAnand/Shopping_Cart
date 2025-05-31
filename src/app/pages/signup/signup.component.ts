@@ -12,6 +12,10 @@ import { FormsModule } from "@angular/forms";
 })
 export class SignupComponent {
   username = "";
+  email = "";
+  mobile = "";
+  address = "";
+  gender = "";
   password = "";
   confirmPassword = "";
 
@@ -23,23 +27,35 @@ export class SignupComponent {
       return;
     }
 
-    // Get existing users or initialize empty array
     const users = JSON.parse(localStorage.getItem("users") || "[]");
 
-    // Check for duplicate username
     const userExists = users.some((u: any) => u.username === this.username);
     if (userExists) {
       alert("Username already exists. Try another.");
       return;
     }
 
-    // Add new user
-    users.push({ username: this.username, password: this.password });
+    // Create full user object
+    const newUser = {
+      username: this.username,
+      email: this.email,
+      mobile: this.mobile,
+      address: this.address,
+      gender: this.gender,
+      password: this.password,
+    };
+
+    // Save to user list
+    users.push(newUser);
     localStorage.setItem("users", JSON.stringify(users));
 
-    alert("Signup successful! Please login.");
-    this.router.navigate(["/login"]);
+    // Save current user separately for profile page
+    localStorage.setItem("currentUser", JSON.stringify(newUser));
+
+    alert("Signup successful!");
+    this.router.navigate(["/profile"]);
   }
+
   movetologin() {
     this.login.navigate(["login"]);
   }
