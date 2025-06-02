@@ -13,6 +13,12 @@ export class ProfileComponent implements OnInit {
   uploadedPhoto: string | ArrayBuffer | null = null;
 
   ngOnInit(): void {
+    const currentUser = localStorage.getItem("currentUser");
+    if (currentUser) {
+      console.log(currentUser);
+
+      this.user = JSON.parse(currentUser);
+    }
     const username = this.user?.username || "User";
     const savedPhoto = localStorage.getItem("profilePhoto");
 
