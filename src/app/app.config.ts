@@ -1,7 +1,8 @@
 import { provideRouter } from "@angular/router";
 import { routes } from "./app.routes";
-import { getAnalytics } from "firebase/analytics";
 import { provideFirebaseApp, initializeApp } from "@angular/fire/app";
+import { provideHttpClient } from "@angular/common/http";
+import { provideAuth, getAuth } from "@angular/fire/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDiBF_eMVYMlH87Xu7JByn847LNFfcX_DE",
@@ -16,4 +17,6 @@ const firebaseConfig = {
 export const appConfig = [
   provideRouter(routes),
   provideFirebaseApp(() => initializeApp(firebaseConfig)),
+  provideHttpClient(),
+  provideAuth(() => getAuth()),
 ];

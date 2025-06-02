@@ -1,30 +1,41 @@
 import { Component, OnInit } from "@angular/core";
 import { CommonModule } from "@angular/common";
+import { Router } from "@angular/router";
+import { FormsModule } from "@angular/forms";
 import { CartService } from "../../services/cart.service";
 import { RouterLink } from "@angular/router";
 
 @Component({
   selector: "app-navbar",
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, FormsModule],
   templateUrl: "./navbar.component.html",
   styleUrl: "./navbar.component.css",
 })
 export class NavbarComponent implements OnInit {
   cartCount = 0;
   isNavCollapsed = true;
+  searchTerm = "";
 
-  constructor(private cartService: CartService) {}
+  constructor(private cartService: CartService, private router: Router) {}
 
   ngOnInit() {
     const user = JSON.parse(localStorage.getItem("currentUser") || "{}");
 
     if (user?.username) {
-      this.cartService.loadUserCart(user.username); // Load user's cart
+      this.cartService.loadUserCart(user.username);
     }
 
     this.cartService.cartCount$.subscribe((count) => {
       this.cartCount = count;
     });
+  }
+
+  searchProduct() {
+    if (this.searchTerm.trim()) {
+      this.router.navigate(["/search"], {
+        queryParams: { q: this.searchTerm.trim() },
+      });
+    }
   }
 }

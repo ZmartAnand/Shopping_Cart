@@ -53,7 +53,7 @@ export class SignupComponent {
     localStorage.setItem("currentUser", JSON.stringify(newUser));
 
     alert("Signup successful!");
-    this.router.navigate(["/profile"]);
+    this.router.navigate(["/login"]);
   }
 
   movetologin() {

@@ -1,0 +1,14 @@
+<div class="container mt-4">
+  <h2>Results for "{{ query }}"</h2>
+
+  <div *ngIf="searchResults.length > 0; else noResults">
+    <div *ngFor="let product of searchResults" class="card p-3 my-2">
+      <h5>{{ product.name }}</h5>
+      <p>{{ product.description }}</p>
+    </div>
+  </div>
+
+  <ng-template #noResults>
+    <p>No results found.</p>
+  </ng-template>
+</div>
