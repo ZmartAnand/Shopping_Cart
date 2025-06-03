@@ -21,9 +21,9 @@
             type="text"
             class="form-control"
             placeholder="Search for products..."
-            [(ngModel)]="searchTerm"
+            (input)="onSearch($event)"
           />
-          <button class="btn btn-light" (click)="searchProduct()">
+          <button class="btn btn-light">
             <i class="fas fa-search"></i>
           </button>
         </div>

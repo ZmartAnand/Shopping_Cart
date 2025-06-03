@@ -1,7 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
 import { CartService } from "../../services/cart.service";
-import { RouterModule } from "@angular/router";
+import { Router, RouterModule } from "@angular/router";
 
 @Component({
   selector: "app-cart",
@@ -38,6 +38,9 @@ export class CartComponent {
       0
     );
   }
+  placeOrder() {
+    this.router.navigate(["/order-success"]);
+  }
 
-  constructor(private cartService: CartService) {}
+  constructor(private cartService: CartService, private router: Router) {}
 }

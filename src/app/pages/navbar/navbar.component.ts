@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, EventEmitter, OnInit, Output } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { Router } from "@angular/router";
 import { FormsModule } from "@angular/forms";
@@ -15,7 +15,8 @@ import { RouterLink } from "@angular/router";
 export class NavbarComponent implements OnInit {
   cartCount = 0;
   isNavCollapsed = true;
-  searchTerm = "";
+  // searchTerm = "";
+  @Output() filteredSearch = new EventEmitter<string>();
 
   constructor(private cartService: CartService, private router: Router) {}
 
@@ -31,11 +32,18 @@ export class NavbarComponent implements OnInit {
     });
   }
 
-  searchProduct() {
-    if (this.searchTerm.trim()) {
-      this.router.navigate(["/search"], {
-        queryParams: { q: this.searchTerm.trim() },
-      });
-    }
+  onSearch(event: Event) {
+    console.log(
+      "search",
+      (event.target as HTMLInputElement).value.trim().toLowerCase()
+    );
+    const search = (event.target as HTMLInputElement).value
+      .trim()
+      .toLowerCase();
+    this.filteredSearch.emit(search);
   }
+
+  // searchProduct(event: any) {
+  //   console.log("search", event.target.value);
+  // }
 }

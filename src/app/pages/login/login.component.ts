@@ -3,6 +3,7 @@ import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 import { Router } from "@angular/router";
 import { CartService } from "../../services/cart.service";
+import { AuthService } from "../../services/auth.service";
 
 @Component({
   selector: "app-login",
@@ -14,28 +15,40 @@ import { CartService } from "../../services/cart.service";
 export class LoginComponent {
   username = "";
   password = "";
+  loading = false; // <- spinner flag
 
   constructor(
     private router: Router,
     private signin: Router,
-    private cartService: CartService
+    private cartService: CartService,
+    private authService: AuthService
   ) {}
 
   login() {
-    const users = JSON.parse(localStorage.getItem("users") || "[]");
-    const user = users.find(
-      (u: any) => u.username === this.username && u.password === this.password
-    );
+    this.loading = true; // Start spinner
 
-    if (user) {
-      localStorage.setItem("currentUser", JSON.stringify(user)); // Optional: store current user
-      this.cartService.loadUserCart(this.username);
-      this.router.navigate(["/home"]);
-    } else {
-      alert("Invalid username or password");
-    }
+    setTimeout(() => {
+      const users = JSON.parse(localStorage.getItem("users") || "[]");
+      const user = users.find(
+        (u: any) => u.username === this.username && u.password === this.password
+      );
+
+      if (user) {
+        localStorage.setItem("currentUser", JSON.stringify(user));
+        this.cartService.loadUserCart(this.username);
+        this.router.navigate(["/home"]);
+      } else {
+        alert("Invalid username or password");
+      }
+
+      this.loading = false; // Stop spinner
+    }, 1000); // simulate a short delay
   }
+
   movetosignin() {
     this.signin.navigate(["signup"]);
+  }
+  loginWithGoogle() {
+    this.authService.loginWithGoogle();
   }
 }
