@@ -230,6 +230,8 @@ export class HomeComponent {
   cartItems: any;
 
   constructor(private router: Router, private cartService: CartService) {
+    this.filteredProduct = this.products;
+    console.log("filteres", this.filteredProduct);
     // this.loadproduct();
   }
 
@@ -238,8 +240,7 @@ export class HomeComponent {
   // }
 
   ngOnInit() {
-    this.filteredProduct = this.products;
-    this.filteredProduct = JSON.parse(localStorage.getItem("products") || "[]");
+    // this.filteredProduct = JSON.parse(localStorage.getItem("products") || "[]");
     // this.filteredProduct = [...this.allproducts];
   }
 

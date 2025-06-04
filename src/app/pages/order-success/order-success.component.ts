@@ -1,11 +1,10 @@
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
+import { RouterLink } from "@angular/router";
 
 @Component({
-  selector: 'app-order-success',
-  imports: [],
-  templateUrl: './order-success.component.html',
-  styleUrl: './order-success.component.css'
+  selector: "app-order-success",
+  imports: [RouterLink],
+  templateUrl: "./order-success.component.html",
+  styleUrl: "./order-success.component.css",
 })
-export class OrderSuccessComponent {
-
-}
+export class OrderSuccessComponent {}
