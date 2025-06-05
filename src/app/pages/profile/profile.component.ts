@@ -29,7 +29,7 @@ export class ProfileComponent implements OnInit {
     const username = this.user?.username || "User";
     const savedPhoto = localStorage.getItem("profilePhoto");
 
-    this.avatarUrl = `https://ui-avatars.com/api/?name=${username}&background=0D8ABC&color=fff`;
+    // this.avatarUrl = `https://ui-avatars.com/api/?name=${username}&background=0D8ABC&color=fff`;
     this.uploadedPhoto = savedPhoto ? savedPhoto : null;
   }
 
@@ -47,10 +47,33 @@ export class ProfileComponent implements OnInit {
 
     reader.readAsDataURL(file);
   }
+  // removePhoto() {
+  //   this.avatarUrl = "";
+  //   this.uploadedPhoto = null;
+  //   this.user.photo = "";
+  //   localStorage.setItem("currentUser", JSON.stringify(this.user));
+  // }
   removePhoto() {
-    this.avatarUrl = "";
-    this.uploadedPhoto = null;
-    this.user.photo = "";
-    localStorage.setItem("currentUser", JSON.stringify(this.user));
+    if (confirm("Are you sure you want to remove your profile photo?")) {
+      this.uploadedPhoto = null;
+      this.avatarUrl = "";
+      localStorage.removeItem("profilePhoto");
+
+      const currentUser = JSON.parse(
+        localStorage.getItem("currentUser") || "{}"
+      );
+      currentUser.photo = "";
+
+      localStorage.setItem("currentUser", JSON.stringify(currentUser));
+
+      const users = JSON.parse(localStorage.getItem("users") || "[]");
+      const index = users.findIndex(
+        (u: any) => u.username === currentUser.username
+      );
+      if (index !== -1) {
+        users[index].photo = "";
+        localStorage.setItem("users", JSON.stringify(users));
+      }
+    }
   }
 }

@@ -5,9 +5,18 @@
 
       <!-- Profile Image Section -->
       <div class="d-flex flex-column align-items-center mb-4">
-        <div class="position-relative">
+        <!-- <div class="position-relative">
           <img
             [src]="uploadedPhoto || avatarUrl || defaultAvatar"
+            alt="User Photo"
+            class="rounded-circle border"
+            width="130"
+            height="130"
+            style="object-fit: cover"
+          /> -->
+        <div class="position-relative">
+          <img
+            [src]="uploadedPhoto || defaultAvatar"
             alt="User Photo"
             class="rounded-circle border"
             width="130"
