@@ -36,7 +36,7 @@ export class LoginComponent {
       if (user) {
         localStorage.setItem("currentUser", JSON.stringify(user));
         this.cartService.loadUserCart(this.username);
-        this.router.navigate(["/home"]);
+        this.router.navigate(["/home"], { replaceUrl: true });
       } else {
         alert("Invalid username or password");
       }

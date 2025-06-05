@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { RouterLink } from "@angular/router";
+import { Auth } from "@angular/fire/auth";
 
 @Component({
   selector: "app-profile",
@@ -11,6 +12,9 @@ export class ProfileComponent implements OnInit {
   user: any;
   avatarUrl: string = "";
   uploadedPhoto: string | ArrayBuffer | null = null;
+  defaultAvatar = "https://www.w3schools.com/howto/img_avatar.png";
+
+  constructor(private auth: Auth) {}
 
   ngOnInit(): void {
     const currentUser = localStorage.getItem("currentUser");
@@ -18,6 +22,9 @@ export class ProfileComponent implements OnInit {
       console.log(currentUser);
 
       this.user = JSON.parse(currentUser);
+      this.auth.onAuthStateChanged((user: any) => {
+        console.log("User:", user);
+      });
     }
     const username = this.user?.username || "User";
     const savedPhoto = localStorage.getItem("profilePhoto");
@@ -39,5 +46,11 @@ export class ProfileComponent implements OnInit {
     };
 
     reader.readAsDataURL(file);
+  }
+  removePhoto() {
+    this.avatarUrl = "";
+    this.uploadedPhoto = null;
+    this.user.photo = "";
+    localStorage.setItem("currentUser", JSON.stringify(this.user));
   }
 }
