@@ -51,4 +51,10 @@ export class LoginComponent {
   loginWithGoogle() {
     this.authService.loginWithGoogle();
   }
+  resetPassword() {
+    if (!this.username) {
+      alert("Please enter your email first.");
+      return;
+    }
+  }
 }
