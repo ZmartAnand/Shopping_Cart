@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { Router } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
+import { AuthService } from "../../services/auth.service";
 
 @Component({
   selector: "app-signup",
@@ -19,7 +20,11 @@ export class SignupComponent {
   password = "";
   confirmPassword = "";
 
-  constructor(private router: Router, private login: Router) {}
+  constructor(
+    private router: Router,
+    private login: Router,
+    private auth: AuthService
+  ) {}
 
   signup() {
     if (this.password !== this.confirmPassword) {
@@ -27,33 +32,12 @@ export class SignupComponent {
       return;
     }
 
-    const users = JSON.parse(localStorage.getItem("users") || "[]");
-
-    const userExists = users.some((u: any) => u.username === this.username);
-    if (userExists) {
-      alert("Username already exists. Try another.");
-      return;
+    if (this.email && this.password === this.confirmPassword) {
+      this.auth.signup(this.email, this.password).then(() => {
+        alert("Welcome Asshoping");
+        this.router.navigate(["/login"]);
+      });
     }
-
-    // Create full user object
-    const newUser = {
-      username: this.username,
-      email: this.email,
-      mobile: this.mobile,
-      address: this.address,
-      gender: this.gender,
-      password: this.password,
-    };
-
-    // Save to user list
-    users.push(newUser);
-    localStorage.setItem("users", JSON.stringify(users));
-
-    // Save current user separately for profile page
-    localStorage.setItem("currentUser", JSON.stringify(newUser));
-
-    alert("Signup successful!");
-    this.router.navigate(["/login"]);
   }
 
   movetologin() {

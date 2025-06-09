@@ -1,15 +1,23 @@
 import { Injectable } from "@angular/core";
-import {
-  Auth,
-  signInWithPopup,
-  GoogleAuthProvider,
-  signOut,
-} from "@angular/fire/auth";
+import { Auth, signInWithPopup, GoogleAuthProvider } from "@angular/fire/auth";
+import { createUserWithEmailAndPassword, signOut } from "firebase/auth";
 import { Router } from "@angular/router";
+import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
 
 @Injectable({ providedIn: "root" })
 export class AuthService {
   constructor(private auth: Auth, private router: Router) {}
+
+  signup(email: string, password: string) {
+    return createUserWithEmailAndPassword(this.auth, email, password);
+  }
+
+  login(email: string, password: string) {
+    return signInWithEmailAndPassword(this.auth, email, password);
+  }
+  logout() {
+    return signOut(this.auth);
+  }
 
   async loginWithGoogle() {
     try {
@@ -21,13 +29,6 @@ export class AuthService {
       console.error("Google login failed:", error);
       alert("Google login failed");
     }
-  }
-
-  logout() {
-    signOut(this.auth).then(() => {
-      localStorage.removeItem("currentUser");
-      this.router.navigate(["/login"]);
-    });
   }
 
   getCurrentUser() {

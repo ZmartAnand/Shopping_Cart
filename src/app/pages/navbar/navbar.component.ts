@@ -4,6 +4,8 @@ import { Router } from "@angular/router";
 import { FormsModule } from "@angular/forms";
 import { CartService } from "../../services/cart.service";
 import { RouterLink } from "@angular/router";
+import { AuthService } from "../../services/auth.service";
+import { signOut } from "firebase/auth";
 
 @Component({
   selector: "app-navbar",
@@ -18,7 +20,11 @@ export class NavbarComponent implements OnInit {
   // searchTerm = "";
   @Output() filteredSearch = new EventEmitter<string>();
 
-  constructor(private cartService: CartService, private router: Router) {}
+  constructor(
+    private cartService: CartService,
+    private router: Router,
+    private authService: AuthService
+  ) {}
 
   ngOnInit() {
     const user = JSON.parse(localStorage.getItem("currentUser") || "{}");
@@ -42,8 +48,12 @@ export class NavbarComponent implements OnInit {
       .toLowerCase();
     this.filteredSearch.emit(search);
   }
-
-  // searchProduct(event: any) {
-  //   console.log("search", event.target.value);
-  // }
+  logout() {
+    this.authService.logout().then(() => {
+      alert("logout successfully");
+      localStorage.removeItem("currentUser");
+      this.router.navigate(["/login"]);
+      window.location.reload();
+    });
+  }
 }

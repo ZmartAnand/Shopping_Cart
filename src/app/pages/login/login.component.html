@@ -23,14 +23,14 @@
     <form #loginForm="ngForm" (ngSubmit)="login()" novalidate>
       <!-- Username Field -->
       <div class="mb-3">
-        <label for="username" class="form-label">Username</label>
+        <label for="username" class="form-label">Email</label>
         <input
           type="text"
-          id="username"
-          name="username"
+          id="email"
+          name="email"
           class="form-control"
-          placeholder="Enter your username"
-          [(ngModel)]="username"
+          placeholder="Enter your email"
+          [(ngModel)]="email"
           #usernameRef="ngModel"
           required
           minlength="4"
@@ -44,7 +44,7 @@
         >
           <i class="bi bi-exclamation-circle me-1"></i>
           <span *ngIf="usernameRef.errors?.['required']"
-            >Username is required.</span
+            >email is required.</span
           >
           <span *ngIf="usernameRef.errors?.['minlength']"
             >Minimum 4 characters required.</span
