@@ -9,11 +9,16 @@ import { EditProfileComponent } from "./pages/edit-profile/edit-profile.componen
 import { ProductComponent } from "./pages/product/product.component";
 import { OrderSuccessComponent } from "./pages/order-success/order-success.component";
 import { authGuard } from "./auth.guard";
+import { ForgotPasswordComponent } from "./pages/forgot-password/forgot-password.component";
 
 export const routes: Routes = [
   { path: "", redirectTo: "login", pathMatch: "full" },
   { path: "signup", component: SignupComponent },
   { path: "login", component: LoginComponent },
+  {
+    path: "forgot-password",
+    component: ForgotPasswordComponent,
+  },
   { path: "profile", component: ProfileComponent, canActivate: [authGuard] },
   {
     path: "edit-profile",

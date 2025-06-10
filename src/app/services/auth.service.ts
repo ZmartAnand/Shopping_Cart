@@ -1,6 +1,10 @@
 import { Injectable } from "@angular/core";
 import { Auth, signInWithPopup, GoogleAuthProvider } from "@angular/fire/auth";
-import { createUserWithEmailAndPassword, signOut } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  sendPasswordResetEmail,
+  signOut,
+} from "firebase/auth";
 import { Router } from "@angular/router";
 import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
 
@@ -17,6 +21,9 @@ export class AuthService {
   }
   logout() {
     return signOut(this.auth);
+  }
+  resetPassword(email: string) {
+    return sendPasswordResetEmail(this.auth, email);
   }
 
   async loginWithGoogle() {
