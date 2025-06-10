@@ -25,22 +25,6 @@ export class LoginComponent {
     private authService: AuthService
   ) {}
 
-  // login() {
-  //   this.loading = true;
-  //   this.authService
-  //     .login(this.email, this.password)
-  //     .then(({ user }) => {
-  //       localStorage.setItem("currentUser", JSON.stringify(user));
-  //       this.cartService.loadUserCart(this.email);
-  //       this.router.navigate(["/home"], { replaceUrl: true });
-  //     })
-  //     .catch((error) => {
-  //       alert("Login failed: " + error.message);
-  //     })
-  //     .finally(() => {
-  //       this.loading = false;
-  //     });
-  // }
   login() {
     this.authService.login(this.email, this.password).then((user: any) => {
       alert("Login Successfully");
