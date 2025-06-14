@@ -72,7 +72,9 @@
       <div class="row mb-3">
         <div class="col-md-6">
           <label class="form-label fw-semibold">Username:</label>
-          <p class="form-control-plaintext">{{ user?.username }}</p>
+          <p class="form-control-plaintext">
+            {{ user?.username || user.displayName }}
+          </p>
         </div>
         <div class="col-md-6">
           <label class="form-label fw-semibold">Email:</label>
@@ -85,16 +87,22 @@
           <label class="form-label fw-semibold">Joined:</label>
           <p class="form-control-plaintext">June 2025</p>
         </div>
+        @if(user.mobile){
+
         <div class="col-md-6">
           <label class="form-label fw-semibold">Phone:</label>
           <p class="form-control-plaintext">{{ user?.mobile }}</p>
         </div>
+        }
       </div>
+
+      @if(user.address){
 
       <div class="mb-3">
         <label class="form-label fw-semibold">Address:</label>
         <p class="form-control-plaintext">{{ user?.address }}</p>
       </div>
+      }
 
       <!-- Buttons -->
       <div class="text-end mt-4">
