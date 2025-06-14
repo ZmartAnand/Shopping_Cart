@@ -7,6 +7,10 @@
   <!-- Main Content -->
   <main class="container my-5">
     <h2 class="section-title">Featured Products</h2>
+    <!-- Error Message -->
+    <div *ngIf="errorMessage" class="alert alert-danger">
+      {{ errorMessage }}
+    </div>
 
     <div class="row g-4">
       <div

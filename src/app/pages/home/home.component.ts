@@ -269,24 +269,23 @@ export class HomeComponent {
     this.cartService.addToCart(product);
   }
 
+  errorMessage: string = "";
+
   searchItem(query: string) {
     if (!query) {
       this.filteredProduct = this.products;
+      this.errorMessage = "";
       return;
     }
+
     this.filteredProduct = this.products.filter((product: any) =>
       product.name.toLowerCase().includes(query.toLowerCase())
     );
+
+    if (this.filteredProduct.length === 0) {
+      this.errorMessage = "No products found--☹️";
+    } else {
+      this.errorMessage = "";
+    }
   }
-
-  // searchItem(query: string) {
-  //   if (!query) {
-  //     this.filteredProduct = this.allproducts;
-  //     return;
-  //   }
-
-  //   this.filteredProduct = this.allproducts.filter((product: any) =>
-  //     product.name.toLowerCase().includes(query.toLowerCase())
-  //   );
-  // }
 }
