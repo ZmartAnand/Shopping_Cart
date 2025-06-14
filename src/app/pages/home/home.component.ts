@@ -234,7 +234,9 @@ export class HomeComponent {
     console.log("filteres", this.filteredProduct);
     // this.loadproduct();
   }
-
+  // this.firestoreService.data$('product').subscribe(product => {
+  //   console.log('product:', product);
+  // });
   // loadproduct() {
   //   localStorage.setItem("products", JSON.stringify(this.products));
   // }
