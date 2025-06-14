@@ -234,9 +234,11 @@ export class HomeComponent {
     console.log("filteres", this.filteredProduct);
     // this.loadproduct();
   }
-  // this.firestoreService.data$('product').subscribe(product => {
-  //   console.log('product:', product);
-  // });
+  // To get product in database
+  // this.firestoreService.getProductById(productId).subscribe(product => {
+  //   this.products = [product]; // store as array if your template expects list
+  //   console.log("Single product loaded:", this.products);
+
   // loadproduct() {
   //   localStorage.setItem("products", JSON.stringify(this.products));
   // }
