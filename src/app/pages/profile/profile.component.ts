@@ -15,22 +15,6 @@ export class ProfileComponent implements OnInit {
   defaultAvatar = "https://www.w3schools.com/howto/img_avatar.png";
 
   constructor(private auth: Auth) {}
-
-  // ngOnInit(): void {
-  //   const currentUser = localStorage.getItem("currentUser");
-  //   if (currentUser) {
-  //     console.log(currentUser);
-
-  //     this.user = JSON.parse(currentUser);
-  //     this.auth.onAuthStateChanged((user: any) => {
-  //       console.log("User:", user);
-  //     });
-  //   }
-  //   const username = this.user?.username || "User";
-  //   const savedPhoto = localStorage.getItem("profilePhoto");
-
-  //   this.uploadedPhoto = savedPhoto ? savedPhoto : null;
-  // }
   ngOnInit(): void {
     const currentUserString = localStorage.getItem("currentUser");
     if (currentUserString) {

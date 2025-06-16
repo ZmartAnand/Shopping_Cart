@@ -10,11 +10,11 @@ import { ProductComponent } from "./pages/product/product.component";
 import { OrderSuccessComponent } from "./pages/order-success/order-success.component";
 import { authGuard } from "./auth.guard";
 import { ForgotPasswordComponent } from "./pages/forgot-password/forgot-password.component";
-
+import { loginGuard } from "./login.guard";
 export const routes: Routes = [
   { path: "", redirectTo: "login", pathMatch: "full" },
-  { path: "signup", component: SignupComponent },
-  { path: "login", component: LoginComponent },
+  { path: "signup", component: SignupComponent, canActivate: [loginGuard] },
+  { path: "login", component: LoginComponent, canActivate: [loginGuard] },
   {
     path: "forgot-password",
     component: ForgotPasswordComponent,
