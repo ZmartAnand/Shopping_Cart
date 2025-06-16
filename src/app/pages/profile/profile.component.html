@@ -16,7 +16,7 @@
           /> -->
         <div class="position-relative">
           <img
-            [src]="uploadedPhoto || defaultAvatar"
+            [src]="uploadedPhoto"
             alt="User Photo"
             class="rounded-circle border"
             width="130"
@@ -73,12 +73,14 @@
         <div class="col-md-6">
           <label class="form-label fw-semibold">Username:</label>
           <p class="form-control-plaintext">
-            {{ user?.username || user.displayName }}
+            {{ this.user.name }}
           </p>
         </div>
         <div class="col-md-6">
           <label class="form-label fw-semibold">Email:</label>
-          <p class="form-control-plaintext">{{ user?.email }}</p>
+          <p class="form-control-plaintext">
+            {{ user?.email || user?.user?.email }}
+          </p>
         </div>
       </div>
 

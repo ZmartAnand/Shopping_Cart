@@ -30,7 +30,17 @@ export class AuthService {
     try {
       const provider = new GoogleAuthProvider();
       const result = await signInWithPopup(this.auth, provider);
-      localStorage.setItem("currentUser", JSON.stringify(result.user));
+
+      const user = result.user;
+      const userData = {
+        uid: user.uid,
+        email: user.email,
+        displayName: user.displayName || "User",
+        photoURL:
+          user.photoURL || "https://www.w3schools.com/howto/img_avatar.png",
+      };
+
+      localStorage.setItem("currentUser", JSON.stringify(userData));
       this.router.navigate(["/home"]);
     } catch (error) {
       console.error("Google login failed:", error);

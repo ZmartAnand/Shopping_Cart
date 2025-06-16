@@ -20,14 +20,17 @@ export class ProfileComponent implements OnInit {
     if (currentUserString) {
       try {
         this.user = JSON.parse(currentUserString);
+        // console.log("user", this.user);
+        this.user.name =
+          this.user.displayName ||
+          this.user.username ||
+          this.user.user.email.split("@")[0];
 
-        const username = this.user.displayName || this.user.username || "User";
-        console.log(this.user);
-        const userPhoto = this.user.photo || this.user.photoURL || "";
+        // const userPhoto = this.user.photo || this.user.photoURL;
 
-        const savedPhoto = localStorage.getItem("profilePhoto");
+        // const savedPhoto = localStorage.getItem("profilePhoto");
 
-        this.uploadedPhoto = savedPhoto || userPhoto || this.defaultAvatar;
+        this.uploadedPhoto = this.user.photoURL || this.defaultAvatar;
       } catch (error) {
         console.error("Error parsing currentUser:", error);
       }
@@ -50,12 +53,7 @@ export class ProfileComponent implements OnInit {
 
     reader.readAsDataURL(file);
   }
-  // removePhoto() {
-  //   this.avatarUrl = "";
-  //   this.uploadedPhoto = null;
-  //   this.user.photo = "";
-  //   localStorage.setItem("currentUser", JSON.stringify(this.user));
-  // }
+
   removePhoto() {
     if (confirm("Are you sure you want to remove your profile photo?")) {
       this.uploadedPhoto = null;
