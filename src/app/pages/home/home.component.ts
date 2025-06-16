@@ -283,7 +283,7 @@ export class HomeComponent {
     );
 
     if (this.filteredProduct.length === 0) {
-      this.errorMessage = "No products found 😞🔎";
+      this.errorMessage = "🔎 No products found 😞";
     } else {
       this.errorMessage = "";
     }
