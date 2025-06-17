@@ -3,6 +3,7 @@ import { Component } from "@angular/core";
 import { Router, RouterLink } from "@angular/router";
 import { NavbarComponent } from "../navbar/navbar.component";
 import { CartService } from "../../services/cart.service";
+import { FirestoreService } from "../../../firestore.service";
 
 @Component({
   selector: "app-home",
@@ -229,15 +230,18 @@ export class HomeComponent {
   ];
   cartItems: any;
 
-  constructor(private router: Router, private cartService: CartService) {
+  constructor(
+    private router: Router,
+    private cartService: CartService,
+    private firestoreService: FirestoreService
+  ) {
     this.filteredProduct = this.products;
-    console.log("filteres", this.filteredProduct);
-    // this.loadproduct();
+    // To show in home page
+    // console.log("filteres", this.filteredProduct);
+    // this.firestoreService.getProducts().subscribe((product: any) => {
+    //   this.filteredProduct = product;
+    // });
   }
-  // To get product in database
-  // this.firestoreService.getProductById(productId).subscribe(product => {
-  //   this.products = [product]; // store as array if your template expects list
-  //   console.log("Single product loaded:", this.products);
 
   // loadproduct() {
   //   localStorage.setItem("products", JSON.stringify(this.products));
