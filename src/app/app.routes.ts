@@ -11,6 +11,7 @@ import { OrderSuccessComponent } from "./pages/order-success/order-success.compo
 import { authGuard } from "./auth.guard";
 import { ForgotPasswordComponent } from "./pages/forgot-password/forgot-password.component";
 import { loginGuard } from "./login.guard";
+import { ProductDetailsComponent } from "./pages/product-details/product-details.component";
 export const routes: Routes = [
   { path: "", redirectTo: "login", pathMatch: "full" },
   { path: "signup", component: SignupComponent, canActivate: [loginGuard] },
@@ -27,6 +28,7 @@ export const routes: Routes = [
   },
   { path: "home", component: HomeComponent, canActivate: [authGuard] },
   { path: "product", component: ProductComponent },
+  {path: "product-details", component: ProductDetailsComponent},
   { path: "cart", component: CartComponent, canActivate: [authGuard] },
   { path: "about", component: AboutComponent, canActivate: [authGuard] },
   {

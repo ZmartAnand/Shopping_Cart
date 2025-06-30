@@ -1,3 +1,4 @@
+<app-navbar></app-navbar>
 <div class="container mt-5">
   <div class="row justify-content-center">
     <div class="col-lg-8 bg-white shadow rounded p-4">
@@ -15,8 +16,9 @@
             style="object-fit: cover"
           /> -->
         <div class="position-relative">
+          <!-- {{log(uploadedPhoto)}} -->
           <img
-            [src]="uploadedPhoto"
+            [src]="this.user?.photoURL ? this.user?.photoURL : this.defaultAvatar"
             alt="User Photo"
             class="rounded-circle border"
             width="130"
@@ -25,7 +27,7 @@
           />
 
           <!-- Camera Icon Overlay -->
-          <label
+          <!-- <label
             for="photoInput"
             class="position-absolute"
             style="
@@ -42,7 +44,7 @@
               src="https://img.icons8.com/ios-filled/22/000000/camera.png"
               alt="Camera Icon"
             />
-          </label>
+          </label> -->
 
           <input
             type="file"
@@ -54,13 +56,14 @@
         </div>
 
         <!-- Remove Photo Button -->
-        <button
+        <!-- <button
           class="btn btn-danger px-3 py-2 mt-3"
+          [disabled]="!this.defaultAvatar"
           (click)="removePhoto()"
           style="font-weight: 500"
         >
           Remove Profile
-        </button>
+        </button> -->
       </div>
 
       <!-- Username below image -->
@@ -118,3 +121,4 @@
     </div>
   </div>
 </div>
+<app-footer></app-footer>

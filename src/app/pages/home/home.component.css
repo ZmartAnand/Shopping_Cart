@@ -79,6 +79,7 @@ main {
   .product-title {
     font-weight: 600;
     color: var(--dark-color);
+    width: 55%;
   }
 
   .product-price {
@@ -112,28 +113,4 @@ main {
     height: 3px;
     background-color: var(--primary-color);
   }
-}
-.footer-link {
-  color: #ccc;
-  text-decoration: none;
-  display: block;
-  margin-bottom: 0.5rem;
-  font-size: 0.95rem;
-  transition: color 0.3s ease;
-}
-
-.footer-link:hover {
-  color: #ffc107;
-  /* text-decoration: underline; */
-}
-
-.footer-icon {
-  color: #ccc;
-  font-size: 1.5rem;
-  transition: color 0.3s ease, transform 0.2s ease;
-}
-
-.footer-icon:hover {
-  color: #ffc107;
-  transform: scale(1.15);
 }

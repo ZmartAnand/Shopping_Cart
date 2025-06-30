@@ -14,7 +14,7 @@
 
     <div class="row g-4">
       <div
-        class="col-12 col-md-6 col-lg-3"
+        class="col-12 col-md-6 col-lg-3" (click)="viewProduct()"
         *ngFor="let product of filteredProduct"
       >
         <div class="card product-card h-100 mh-100 min-h-100">
@@ -75,55 +75,4 @@
       </div>
     </div>
   </main>
-
-  <!-- Footer -->
-  <footer class="footer bg-dark text-light pt-5 pb-4 mt-5">
-    <div class="container">
-      <div class="row gy-4">
-        <!-- Logo & Intro -->
-        <div class="col-md-4">
-          <h4 class="fw-bold mb-3">AS Shop</h4>
-          <p class="text-light small">
-            Your one-stop shop for premium products, lightning-fast delivery,
-            and friendly support.
-          </p>
-        </div>
-
-        <!-- Useful Links -->
-        <div class="col-md-4">
-          <h5 class="fw-semibold mb-3">Quick Links</h5>
-          <ul class="list-unstyled">
-            <li><a routerLink="/home" class="footer-link">🏠 Home</a></li>
-            <li><a routerLink="/cart" class="footer-link">🛒 Cart</a></li>
-            <li><a routerLink="/about" class="footer-link">ℹ️ About Us</a></li>
-          </ul>
-        </div>
-
-        <!-- Social Media -->
-        <div class="col-md-4">
-          <h5 class="fw-semibold mb-3">Follow Us</h5>
-          <div class="d-flex gap-3">
-            <a href="https://facebook.com" target="_blank" class="footer-icon"
-              ><i class="bi bi-facebook"></i
-            ></a>
-            <a href="https://github.com/" target="_blank" class="footer-icon"
-              ><i class="fa-brands fa-github"></i
-            ></a>
-            <a href="https://instagram.com" target="_blank" class="footer-icon"
-              ><i class="bi bi-instagram"></i
-            ></a>
-            <a href="https://linkedin.com" target="_blank" class="footer-icon"
-              ><i class="bi bi-linkedin"></i
-            ></a>
-          </div>
-        </div>
-      </div>
-
-      <hr class="my-4 border-secondary" />
-      <div class="text-center small text-secondary">
-        &copy; {{ currentYear }} <strong>AS - Shopping Cart</strong>. All rights
-        reserved.
-      </div>
-    </div>
-  </footer>
 </div>

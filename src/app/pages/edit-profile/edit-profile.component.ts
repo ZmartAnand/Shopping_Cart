@@ -2,11 +2,13 @@ import { Component, OnInit } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { Router } from "@angular/router";
 import { CommonModule } from "@angular/common";
+import { NavbarComponent } from "../navbar/navbar.component";
+import { FooterComponent } from "../footer/footer.component";
 
 @Component({
   selector: "app-edit-profile",
   standalone: true, //
-  imports: [CommonModule, FormsModule], // ✅
+  imports: [CommonModule, FormsModule, NavbarComponent, FooterComponent],
   templateUrl: "./edit-profile.component.html",
   styleUrls: ["./edit-profile.component.css"],
 })

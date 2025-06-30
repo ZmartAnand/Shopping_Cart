@@ -18,6 +18,8 @@ export class LoginComponent {
   password = "";
   loading = false; // <- spinner flag
 
+  // username: any;
+
   constructor(
     private router: Router,
     private signin: Router,
@@ -29,7 +31,7 @@ export class LoginComponent {
     this.authService
       .login(this.email, this.password)
       .then((user: any) => {
-        alert("Login Successfully");
+        // alert("Login Successfully");
         localStorage.setItem("currentUser", JSON.stringify(user));
         this.router.navigate(["/home"], { replaceUrl: true });
       })

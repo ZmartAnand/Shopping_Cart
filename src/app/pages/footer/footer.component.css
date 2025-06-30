@@ -1,0 +1,24 @@
+.footer-link {
+    color: #ccc;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+  }
+  
+  .footer-link:hover {
+    color: #3532ec;
+    /* text-decoration: underline; */
+  }
+  
+  .footer-icon {
+    color: #ccc;
+    font-size: 1.5rem;
+    transition: color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .footer-icon:hover {
+    color: #3532ec;
+    transform: scale(1.15);
+  }
