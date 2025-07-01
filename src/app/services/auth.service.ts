@@ -10,6 +10,7 @@ import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
 
 @Injectable({ providedIn: "root" })
 export class AuthService {
+  user$: any;
   constructor(private auth: Auth, private router: Router) {}
 
   signup(email: string, password: string) {
