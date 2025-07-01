@@ -243,6 +243,7 @@ export class HomeComponent {
     this.firestoreService.getProducts().subscribe((product: any) => {
       this.products = product;
       this.filteredProduct = product
+      console.log('filter',this.filteredProduct)
       this.loading = false;
     });
   }
@@ -296,7 +297,7 @@ export class HomeComponent {
       this.errorMessage = "";
     }
   }
-  viewProduct(){
-    this.router.navigate(["/product-details"])
+  viewProduct(id?: string) {
+    this.router.navigate([`/product/${id}`]);
   }
 }

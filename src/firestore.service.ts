@@ -38,7 +38,7 @@ export class FirestoreService {
     });
   }
 
-  getProductById(id: string): Observable<any | undefined> {
+  getProductById(id: any): Observable<any | undefined> {
     const docRef = doc(this.firestore, `products/${id}`);
     return from(
       getDoc(docRef).then((doc: { exists: () => any; data: () => any }) =>

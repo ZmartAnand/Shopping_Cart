@@ -49,6 +49,7 @@ export class ForgotPasswordComponent {
       })
       .finally(() => {
         this.loading = false;
+        this.form.reset();
       });
   }
 }
