@@ -13,6 +13,7 @@ import { FooterComponent } from "../footer/footer.component";
   styleUrl: "./home.component.css",
 })
 export class HomeComponent {
+  loading: boolean = true;
   products: any[] = [];
   filteredProduct: any = [];
   // products: any = [
@@ -242,6 +243,7 @@ export class HomeComponent {
     this.firestoreService.getProducts().subscribe((product: any) => {
       this.products = product;
       this.filteredProduct = product
+      this.loading = false;
     });
   }
 

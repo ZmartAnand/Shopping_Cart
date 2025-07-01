@@ -3,7 +3,16 @@
   <div class="position-sticky top-0 z-1">
     <app-navbar (filteredSearch)="searchItem($event)"></app-navbar>
   </div>
-
+<!-- Loading Spinner -->
+<div
+  *ngIf="loading"
+  class="position-fixed top-0 start-0 w-100 h-100 bg-light d-flex justify-content-center align-items-center"
+  style="opacity: 0.9; z-index: 1050"
+>
+  <div class="spinner-border text-success" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>
   <!-- Main Content -->
   <main class="container my-5">
     <h2 class="section-title">Featured Products</h2>
@@ -11,6 +20,7 @@
     <div *ngIf="errorMessage" class="text-center alert alert-danger">
       {{ errorMessage }}
     </div>
+ 
 
     <div class="row g-4">
       <div

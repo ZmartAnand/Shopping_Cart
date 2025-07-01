@@ -44,7 +44,7 @@ export class EditProfileComponent implements OnInit {
       localStorage.setItem("users", JSON.stringify(users));
     }
 
-    alert("Profile updated successfully!");
+    // alert("Profile updated successfully!");
     this.router.navigate(["/profile"]);
   }
 }
