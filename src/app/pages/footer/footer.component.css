@@ -22,3 +22,7 @@
   background: rgba(13, 110, 253, 0.1);
   color: var(--bs-primary);
 }
+
+footer {
+  flex-shrink: 0;
+}
