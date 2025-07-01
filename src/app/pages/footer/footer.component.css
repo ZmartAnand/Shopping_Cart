@@ -1,24 +1,24 @@
-.footer-link {
-    color: #ccc;
-    text-decoration: none;
-    display: block;
-    margin-bottom: 0.5rem;
-    font-size: 0.95rem;
-    transition: color 0.3s ease;
-  }
-  
-  .footer-link:hover {
-    color: #3532ec;
-    /* text-decoration: underline; */
-  }
-  
-  .footer-icon {
-    color: #ccc;
-    font-size: 1.5rem;
-    transition: color 0.3s ease, transform 0.2s ease;
-  }
-  
-  .footer-icon:hover {
-    color: #3532ec;
-    transform: scale(1.15);
-  }
+.hover-opacity-100:hover {
+  opacity: 1 !important;
+  color: var(--bs-primary) !important;
+  transition: all 0.3s ease;
+}
+
+.social-icon {
+  width: 36px;
+  height: 36px;
+  background: rgba(255,255,255,0.1);
+  color: white;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+  background: var(--bs-primary);
+  transform: translateY(-3px);
+}
+
+.footer-badge {
+  background: rgba(13, 110, 253, 0.1);
+  color: var(--bs-primary);
+}

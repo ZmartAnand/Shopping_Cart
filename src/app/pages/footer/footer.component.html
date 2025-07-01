@@ -1,50 +1,178 @@
-  <!-- Footer -->
-  <footer class="footer bg-dark text-light pt-5 pb-4 ">
-    <div class="container">
-      <div class="row gy-4">
-        <!-- Logo & Intro -->
-        <div class="col-md-4">
-          <h4 class="fw-bold mb-3">ASshopping Cart</h4>
-          <p class="text-light small">
-            Your one-stop shop for premium products, lightning-fast delivery,
-            and friendly support.
-          </p>
+<footer class="bg-dark text-white pt-5 pb-4">
+  <div class="container">
+    <div class="row g-4">
+      <!-- Brand Column -->
+      <div class="col-lg-4 col-md-6">
+        <div class="d-flex align-items-center mb-3">
+          <img
+            src="/images/image.png"
+            alt="ASshopping Logo"
+            width="40"
+            height="40"
+            class="me-2"
+          />
+          <h4 class="fw-bold mb-0 text-primary">ASshopping Cart</h4>
         </div>
-
-        <!-- Useful Links -->
-        <div class="col-md-4">
-          <h5 class="fw-semibold mb-3">Quick Links</h5>
-          <ul class="list-unstyled">
-            <li><a routerLink="/home" class="footer-link">🏠 Home</a></li>
-            <li><a routerLink="/cart" class="footer-link">🛒 Cart</a></li>
-            <li><a routerLink="/about" class="footer-link">ℹ️ About Us</a></li>
-          </ul>
-        </div>
-
-        <!-- Social Media -->
-        <div class="col-md-4">
-          <h5 class="fw-semibold mb-3">Follow Us</h5>
-          <div class="d-flex gap-3">
-            <a href="https://facebook.com" target="_blank" class="footer-icon"
-              ><i class="bi bi-facebook"></i
-            ></a>
-            <a href="https://github.com/" target="_blank" class="footer-icon"
-              ><i class="fa-brands fa-github"></i
-            ></a>
-            <a href="https://instagram.com" target="_blank" class="footer-icon"
-              ><i class="bi bi-instagram"></i
-            ></a>
-            <a href="https://linkedin.com" target="_blank" class="footer-icon"
-              ><i class="bi bi-linkedin"></i
-            ></a>
+        <p class="text-light opacity-75 mb-3">
+          Your one-stop shop for premium products, lightning-fast delivery, and
+          friendly support.
+        </p>
+        <div class="d-flex gap-2">
+          <div
+            class="badge bg-primary bg-opacity-10 text-primary rounded-pill px-3 py-2"
+          >
+            <i class="bi bi-star-fill me-1"></i> Premium Quality
+          </div>
+          <div
+            class="badge bg-primary bg-opacity-10 text-primary rounded-pill px-3 py-2"
+          >
+            <i class="bi bi-truck me-1"></i> Fast Delivery
           </div>
         </div>
       </div>
 
-      <hr class="my-4 border-secondary" />
-      <div class="text-center small text-secondary">
-        &copy; {{ currentYear }} <strong>ASShopping Cart</strong>. All rights
-        reserved.
+      <!-- Quick Links -->
+      <div class="col-lg-2 col-md-6">
+        <h5 class="fw-semibold mb-3 text-uppercase small">Quick Links</h5>
+        <ul class="list-unstyled">
+          <li class="mb-2">
+            <a
+              routerLink="/home"
+              class="text-light opacity-75 hover-opacity-100 text-decoration-none d-flex align-items-center gap-2"
+            >
+              <i class="bi bi-house-door"></i> Home
+            </a>
+          </li>
+          <li class="mb-2">
+            <a
+              routerLink="/home"
+              class="text-light opacity-75 hover-opacity-100 text-decoration-none d-flex align-items-center gap-2"
+            >
+              <i class="bi bi-grid"></i> Products
+            </a>
+          </li>
+          <li class="mb-2">
+            <a
+              routerLink="/cart"
+              class="text-light opacity-75 hover-opacity-100 text-decoration-none d-flex align-items-center gap-2"
+            >
+              <i class="bi bi-cart3"></i> Cart
+            </a>
+          </li>
+          <li class="mb-2">
+            <a
+              routerLink="/about"
+              class="text-light opacity-75 hover-opacity-100 text-decoration-none d-flex align-items-center gap-2"
+            >
+              <i class="bi bi-info-circle"></i> About Us
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Customer Service -->
+      <div class="col-lg-2 col-md-6">
+        <h5 class="fw-semibold mb-3 text-uppercase small">Help</h5>
+        <ul class="list-unstyled">
+          <li class="mb-2">
+            <a
+              routerLink="/contact"
+              class="text-light opacity-75 hover-opacity-100 text-decoration-none d-flex align-items-center gap-2"
+            >
+              <i class="bi bi-headset"></i> Contact Us
+            </a>
+          </li>
+          <li class="mb-2">
+            <a
+              routerLink="/faq"
+              class="text-light opacity-75 hover-opacity-100 text-decoration-none d-flex align-items-center gap-2"
+            >
+              <i class="bi bi-question-circle"></i> FAQ
+            </a>
+          </li>
+          <li class="mb-2">
+            <a
+              routerLink="/shipping"
+              class="text-light opacity-75 hover-opacity-100 text-decoration-none d-flex align-items-center gap-2"
+            >
+              <i class="bi bi-truck"></i> Shipping Policy
+            </a>
+          </li>
+          <li class="mb-2">
+            <a
+              routerLink="/returns"
+              class="text-light opacity-75 hover-opacity-100 text-decoration-none d-flex align-items-center gap-2"
+            >
+              <i class="bi bi-arrow-left-right"></i> Returns
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Contact & Social -->
+      <div class="col-lg-4 col-md-6">
+        <h5 class="fw-semibold mb-3 text-uppercase small">Connect With Us</h5>
+        <div class="mb-4">
+          <div class="d-flex align-items-center gap-2 mb-2">
+            <i class="bi bi-envelope text-primary"></i>
+            <span class="text-light opacity-75">asshopping&#64;gmail.com</span>
+          </div>
+          <div class="d-flex align-items-center gap-2 mb-2">
+            <i class="bi bi-telephone text-primary"></i>
+            <span class="text-light opacity-75">+91 9003513313</span>
+          </div>
+          <div class="d-flex align-items-center gap-2">
+            <i class="bi bi-geo-alt text-primary"></i>
+            <span class="text-light opacity-75">Tirunelveli.</span>
+          </div>
+        </div>
+
+        <h6 class="fw-semibold mb-2 text-uppercase small">Follow Us</h6>
+        <div class="d-flex gap-3">
+          <a
+            href="https://facebook.com"
+            target="_blank"
+            class="social-icon rounded-circle d-flex align-items-center justify-content-center"
+          >
+            <i class="bi bi-facebook"></i>
+          </a>
+          <a
+            href="https://instagram.com"
+            target="_blank"
+            class="social-icon rounded-circle d-flex align-items-center justify-content-center"
+          >
+            <i class="bi bi-instagram"></i>
+          </a>
+          <a
+            href="https://web.whatsapp.com/"
+            target="_blank"
+            class="social-icon rounded-circle d-flex align-items-center justify-content-center"
+          >
+            <i class="bi bi-whatsapp"></i>
+          </a>
+          <a
+            href="https://linkedin.com"
+            target="_blank"
+            class="social-icon rounded-circle d-flex align-items-center justify-content-center"
+          >
+            <i class="bi bi-linkedin"></i>
+          </a>
+        </div>
       </div>
     </div>
-  </footer>
+
+    <hr class="my-4 border-secondary" />
+
+    <div class="row align-items-center">
+      <div
+        class="col-md-6 text-center text-md-start small text-secondary mb-3 mb-md-0"
+      >
+        &copy; {{ currentYear }} <strong>ASshopping Cart</strong>. All rights
+        reserved.
+      </div>
+      <div class="col-md-6 text-center text-md-end">
+        <!-- <img src="assets/images/payment-methods.png" alt="Payment Methods" height="30" class="opacity-75"> -->
+      </div>
+    </div>
+  </div>
+</footer>

@@ -1,56 +1,161 @@
 <app-navbar></app-navbar>
-<div class="container mt-5">
-  <h2 class="mb-4 text-primary">Edit Profile</h2>
-  <div class="card p-4 shadow">
-    <form (ngSubmit)="saveChanges()">
-      <div class="mb-3">
-        <label class="form-label">Username</label>
-        <input
-          class="form-control"
-          [(ngModel)]="user.username"
-          name="username"
-          required
-        />
-      </div>
-      <div class="mb-3">
-        <label class="form-label">Email</label>
-        <input
-          type="email"
-          class="form-control"
-          [(ngModel)]="user.email"
-          name="email"
-          required
-        />
-      </div>
-      <div class="mb-3">
-        <label class="form-label">Mobile</label>
-        <input class="form-control" [(ngModel)]="user.mobile" name="mobile" />
-      </div>
-      <div class="mb-3">
-        <label class="form-label">Address</label>
-        <textarea
-          class="form-control"
-          [(ngModel)]="user.address"
-          name="address"
-        ></textarea>
-      </div>
-      <div class="mb-3">
-        <label class="form-label">Gender</label>
-        <select class="form-select" [(ngModel)]="user.gender" name="gender">
-          <option value="" disabled selected hidden>Select gender</option>
-          <option value="Male">Male</option>
-          <option value="Female">Female</option>
-          <option value="other">Other</option>
-        </select>
-      </div>
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <!-- Profile Edit Card -->
+      <div class="card border-0 shadow-sm">
+        <div class="card-header bg-secondary text-white py-3">
+          <h2 class="h5 mb-0 d-flex align-items-center">
+            <i class="bi bi-pencil-square me-2"></i>Edit Profile
+          </h2>
+        </div>
+        
+        <div class="card-body p-4">
+          <form (ngSubmit)="saveChanges()" class="needs-validation" novalidate>
+            <!-- Profile Picture Upload -->
+            <div class="text-center mb-4">
+              <!-- <div class="position-relative d-inline-block">
+                <img 
+                  [src]="user.photoURL || 'assets/images/default-avatar.jpg'" 
+                  alt="Profile" 
+                  class="rounded-circle border border-3 border-primary shadow"
+                  width="120"
+                  height="120"
+                  style="object-fit: cover"
+                >
+                <label for="profilePicture" class="position-absolute bottom-0 end-0 bg-white rounded-circle p-2 shadow-sm cursor-pointer">
+                  <i class="bi bi-camera-fill text-primary"></i>
+                </label>
+                <input 
+                  type="file" 
+                  id="profilePicture" 
+                  class="d-none" 
+                  accept="image/*"
+                  (change)="handleImageUpload($event)"
+                >
+              </div> -->
+            </div>
 
-      <div class="text-end">
-        <button class="btn btn-success me-2" type="submit">
-          <i class="fas fa-save me-1"></i> Save Changes
-        </button>
-        <button class="btn btn-secondary" routerLink="/profile">Cancel</button>
+            <!-- Form Fields -->
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label for="username" class="form-label fw-medium">Username</label>
+                <div class="input-group">
+                  <span class="input-group-text bg-light">
+                    <i class="bi bi-person-fill text-muted"></i>
+                  </span>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="username"
+                    [(ngModel)]="user.username"
+                    name="username"
+                    required
+                    placeholder="Enter username"
+                  >
+                </div>
+                <div class="invalid-feedback">
+                  Please provide a username.
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <label for="email" class="form-label fw-medium">Email</label>
+                <div class="input-group">
+                  <span class="input-group-text bg-light">
+                    <i class="bi bi-envelope-fill text-muted"></i>
+                  </span>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    [(ngModel)]="user.email"
+                    name="email"
+                    required
+                    placeholder="Enter email"
+                  >
+                </div>
+                <div class="invalid-feedback">
+                  Please provide a valid email.
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <label for="mobile" class="form-label fw-medium">Mobile</label>
+                <div class="input-group">
+                  <span class="input-group-text bg-light">
+                    <i class="bi bi-phone-fill text-muted"></i>
+                  </span>
+                  <input
+                    type="tel"
+                    class="form-control"
+                    id="mobile"
+                    [(ngModel)]="user.mobile"
+                    name="mobile"
+                    placeholder="Enter mobile number"
+                  >
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <label for="gender" class="form-label fw-medium">Gender</label>
+                <div class="input-group">
+                  <span class="input-group-text bg-light">
+                    <i class="bi bi-gender-ambiguous text-muted"></i>
+                  </span>
+                  <select 
+                    class="form-select" 
+                    id="gender"
+                    [(ngModel)]="user.gender" 
+                    name="gender"
+                  >
+                    <option value="" disabled selected>Select gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="col-12">
+                <label for="address" class="form-label fw-medium">Address</label>
+                <div class="input-group">
+                  <span class="input-group-text bg-light">
+                    <i class="bi bi-house-fill text-muted"></i>
+                  </span>
+                  <textarea
+                    class="form-control"
+                    id="address"
+                    rows="3"
+                    [(ngModel)]="user.address"
+                    name="address"
+                    placeholder="Enter your address"
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+
+            <!-- Form Actions -->
+            <div class="d-flex justify-content-between mt-4 pt-3 border-top">
+              <button 
+                type="button" 
+                class="btn btn-outline-secondary" 
+                routerLink="/profile"
+              >
+                <i class="bi bi-arrow-left me-2"></i>Cancel
+              </button>
+              <button 
+                type="submit" 
+                class="btn btn-outline-primary px-4"
+              >
+                <i class="bi bi-save me-2"></i>Save Changes
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
-    </form>
+    </div>
   </div>
 </div>
+
 <app-footer></app-footer>

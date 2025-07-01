@@ -1,122 +1,102 @@
 <app-navbar></app-navbar>
-<div class="container mt-5 mb-5">
+<div class="container my-5">
   <div class="row justify-content-center">
-    <div class="col-lg-8 bg-white shadow rounded p-4">
-      <h2 class="text-center text-primary mb-4">Your Profile</h2>
-
-      <!-- Profile Image Section -->
-      <div class="d-flex flex-column align-items-center mb-4">
-        <!-- <div class="position-relative">
-          <img
-            [src]="uploadedPhoto || avatarUrl || defaultAvatar"
-            alt="User Photo"
-            class="rounded-circle border"
-            width="130"
-            height="130"
-            style="object-fit: cover"
-          /> -->
-        <div class="position-relative">
-          <!-- {{log(uploadedPhoto)}} -->
-          <img
-            [src]="this.user?.photoURL ? this.user?.photoURL : this.defaultAvatar"
-            alt="User Photo"
-            class="rounded-circle border"
-            width="130"
-            height="130"
-            style="object-fit: cover"
-          />
-
-          <!-- Camera Icon Overlay -->
-          <!-- <label
-            for="photoInput"
-            class="position-absolute"
-            style="
-              bottom: 0;
-              right: 0;
-              background-color: #ffffff;
-              border-radius: 50%;
-              padding: 6px;
-              cursor: pointer;
-              box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
-            "
-          >
-            <img
-              src="https://img.icons8.com/ios-filled/22/000000/camera.png"
-              alt="Camera Icon"
-            />
-          </label> -->
-
-          <input
-            type="file"
-            id="photoInput"
-            (change)="onPhotoSelected($event)"
-            accept="image/*"
-            hidden
-          />
+    <div class="col-lg-8">
+      <!-- Profile Card -->
+      <div class="card shadow-sm border-0 overflow-hidden">
+        <div class="card-header bg-secondary text-white py-3">
+          <h2 class="h5 mb-0 text-center"><i class="bi bi-person-circle me-2"></i>User Profile</h2>
         </div>
+        
+        <div class="card-body p-4">
+          <!-- Profile Header -->
+          <div class="d-flex flex-column align-items-center text-center mb-4">
+            <div class="position-relative mb-3">
+              <img
+                [src]="user?.photoURL || defaultAvatar"
+                alt="User Photo"
+                class="rounded-circle border border-4 border-white shadow"
+                width="150"
+                height="150"
+                style="object-fit: cover"
+              />
+              <!-- <label
+                for="photoInput"
+                class="position-absolute bottom-0 end-0 bg-white rounded-circle p-2 shadow-sm cursor-pointer"
+                title="Change photo"
+              >
+                <i class="bi bi-camera-fill text-primary"></i>
+              </label> -->
+              <input
+                type="file"
+                id="photoInput"
+                (change)="onPhotoSelected($event)"
+                accept="image/*"
+                hidden
+              />
+            </div>
+            
+            <h3 class="fw-bold mb-1">{{ user?.username }}</h3>
+            <p class="text-muted small">{{ user?.email || user?.user?.email }}</p>
+          </div>
 
-        <!-- Remove Photo Button -->
-        <!-- <button
-          class="btn btn-danger px-3 py-2 mt-3"
-          [disabled]="!this.defaultAvatar"
-          (click)="removePhoto()"
-          style="font-weight: 500"
-        >
-          Remove Profile
-        </button> -->
-      </div>
+          <!-- Divider -->
+          <div class="d-flex align-items-center mb-4">
+            <hr class="flex-grow-1 border-top border-light">
+            <span class="px-3 text-muted small">Account Details</span>
+            <hr class="flex-grow-1 border-top border-light">
+          </div>
 
-      <!-- Username below image -->
-      <h4 class="text">{{ user?.username }}</h4>
+          <!-- User Info -->
+          <div class="row g-3 mb-4">
+            <div class="col-md-6">
+              <div class="bg-light rounded p-3 h-100">
+                <label class="d-block text-muted small mb-1">Full Name</label>
+                <p class="mb-0 fw-medium">{{ user?.name || 'Not provided' }}</p>
+              </div>
+            </div>
+            
+            <div class="col-md-6">
+              <div class="bg-light rounded p-3 h-100">
+                <label class="d-block text-muted small mb-1">Email Address</label>
+                <p class="mb-0 fw-medium">{{ user?.email || user?.user?.email }}</p>
+              </div>
+            </div>
+            
+            <div class="col-md-6">
+              <div class="bg-light rounded p-3 h-100">
+                <label class="d-block text-muted small mb-1">Member Since</label>
+                <p class="mb-0 fw-medium">June 2025</p>
+              </div>
+            </div>
+            
+            <div class="col-md-6">
+              <div class="bg-light rounded p-3 h-100">
+                <label class="d-block text-muted small mb-1">Phone Number</label>
+                <p class="mb-0 fw-medium">{{ user?.mobile || 'Not provided' }}</p>
+              </div>
+            </div>
+            
+            @if(user?.address) {
+            <div class="col-12">
+              <div class="bg-light rounded p-3">
+                <label class="d-block text-muted small mb-1">Address</label>
+                <p class="mb-0 fw-medium">{{ user?.address }}</p>
+              </div>
+            </div>
+            }
+          </div>
 
-      <hr class="my-4" />
-
-      <!-- User Info Grid -->
-      <div class="row mb-3">
-        <div class="col-md-6">
-          <label class="form-label fw-semibold">Username:</label>
-          <p class="form-control-plaintext">
-            {{ this.user.name }}
-          </p>
+          <!-- Action Buttons -->
+          <div class="d-flex justify-content-between pt-3 border-top">
+            <button class="btn btn-outline-secondary" routerLink="/home">
+              <i class="bi bi-arrow-left me-2"></i>Back to Home
+            </button>
+            <button class="btn btn-primary" routerLink="/edit-profile">
+              <i class="bi bi-pencil-square me-2"></i>Edit Profile
+            </button>
+          </div>
         </div>
-        <div class="col-md-6">
-          <label class="form-label fw-semibold">Email:</label>
-          <p class="form-control-plaintext">
-            {{ user?.email || user?.user?.email }}
-          </p>
-        </div>
-      </div>
-
-      <div class="row mb-3">
-        <div class="col-md-6">
-          <label class="form-label fw-semibold">Joined:</label>
-          <p class="form-control-plaintext">June 2025</p>
-        </div>
-        @if(user.mobile){
-
-        <div class="col-md-6">
-          <label class="form-label fw-semibold">Phone:</label>
-          <p class="form-control-plaintext">{{ user?.mobile }}</p>
-        </div>
-        }
-      </div>
-
-      @if(user.address){
-
-      <div class="mb-3">
-        <label class="form-label fw-semibold">Address:</label>
-        <p class="form-control-plaintext">{{ user?.address }}</p>
-      </div>
-      }
-
-      <!-- Buttons -->
-      <div class="text-end mt-4">
-        <button class="btn btn-outline-primary me-2" routerLink="/home">
-          <i class="bi bi-house-door me-1"></i> Back to Home
-        </button>
-        <button class="btn btn-outline-success" routerLink="/edit-profile">
-          <i class="bi bi-pencil-square me-1"></i> Edit Profile
-        </button>
       </div>
     </div>
   </div>
