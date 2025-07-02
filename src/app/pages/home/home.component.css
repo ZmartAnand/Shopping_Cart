@@ -79,7 +79,6 @@ main {
   .product-title {
     font-weight: 600;
     color: var(--dark-color);
-    width: 55%;
   }
 
   .product-price {

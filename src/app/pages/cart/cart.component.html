@@ -59,5 +59,12 @@
     </button>
   </div>
 </div>
-
+@if(cartItems.length === 0){
+  <div style="margin-top: 302px">
+    <app-footer></app-footer>
+  </div>
+}@else{
   <app-footer></app-footer>
+
+}
+
