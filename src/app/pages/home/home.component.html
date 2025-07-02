@@ -5,11 +5,9 @@
   </div>
 
   <!-- Loading Spinner -->
-  <div
-    *ngIf="loading"
-    class="position-fixed top-0 start-0 w-100 bg-light d-flex justify-content-center align-items-center"
-    style="opacity: 0.9; z-index: 1050"
-  >
+  <div *ngIf="loading"
+    class="position-fixed top-0 start-0 w-100 h-100 bg-light d-flex justify-content-center align-items-center"
+    style="opacity: 0.9; ">
     <div class="spinner-border text-success" role="status">
       <span class="visually-hidden">Loading...</span>
     </div>
