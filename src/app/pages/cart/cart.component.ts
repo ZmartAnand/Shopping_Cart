@@ -19,7 +19,7 @@ export class CartComponent {
   }
   increaseQuantity(item: any) {
     item.quantity += 1;
-    this.cartService.saveCartItemsToLocal(); // Save changes
+    this.cartService.saveCartItemsToLocal(); 
   }
 
   decreaseQuantity(item: any) {
@@ -31,7 +31,7 @@ export class CartComponent {
 
   removeFromCart(item: any) {
     this.cartService.removeFromCart(item);
-    this.cartItems = this.cartService.getCartItems(); // Update local array
+    this.cartItems = this.cartService.getCartItems(); 
   }
 
   getTotalPrice() {
