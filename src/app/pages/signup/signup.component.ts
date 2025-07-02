@@ -19,6 +19,7 @@ export class SignupComponent {
   gender = "";
   password = "";
   confirmPassword = "";
+  countryCode: string = '+91';
 
   constructor(
     private router: Router,

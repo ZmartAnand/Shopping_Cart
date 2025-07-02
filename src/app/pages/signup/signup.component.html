@@ -15,30 +15,6 @@
     </h3>
 
     <form #signupForm="ngForm" (ngSubmit)="signup()" novalidate>
-      <!-- Username -->
-      <!-- <div class="mb-3">
-        <label for="username" class="form-label">Username</label>
-        <input
-          type="text"
-          id="username"
-          name="username"
-          class="form-control"
-          placeholder="Username"
-          [(ngModel)]="username"
-          #usernameRef="ngModel"
-          required
-          minlength="4"
-          autocomplete="off"
-        />
-        <div
-          *ngIf="usernameRef.invalid && (usernameRef.dirty || usernameRef.touched)"
-          class="text-danger small mt-1"
-        >
-          <i class="bi bi-exclamation-circle me-1"></i>
-          <span *ngIf="usernameRef.errors?.['required']">Username is required.</span>
-          <span *ngIf="usernameRef.errors?.['minlength']">Min. 4 characters required.</span>
-        </div>
-      </div> -->
 
       <!-- Email -->
       <div class="mb-3">
@@ -64,26 +40,44 @@
           <span *ngIf="emailRef.errors?.['email']">Enter a valid email address.</span>
         </div>
       </div>
-      <!-- Mobile -->
-      <div class="mb-3">
-        <label class="form-label">Mobile Number</label>
-        <input
-          type="tel"
-          name="mobile"
-          class="form-control"
-          required
-          pattern="^[0-9]{10}$"
-          placeholder="Mobile Number"
-          [(ngModel)]="mobile"
-          #mobileRef="ngModel"
-        />
-        <div
-          *ngIf="mobileRef.invalid && (mobileRef.dirty || mobileRef.touched)"
-          class="text-danger small mt-1"
-        >
-          Enter a valid 10-digit mobile number.
-        </div>
-      </div>
+     
+     <!-- Mobile -->
+<div class="mb-3">
+  <label class="form-label">Mobile Number</label>
+  <div class="input-group">
+    <select
+      class="form-select flex-shrink-1"
+      style="max-width: 120px"
+      name="countryCode"
+      [(ngModel)]="countryCode"
+      required
+      #countryCodeRef="ngModel"
+    >
+      <option value="+91">🇮🇳 +91</option>
+      <option value="+1">🇺🇸 +1</option>
+      <option value="+44">🇬🇧 +44</option>
+      <option value="+971">🇦🇪 +971</option>
+      <option value="+61">🇦🇺 +61</option>
+      <!-- Add more as needed -->
+    </select>
+    <input
+      type="tel"
+      name="mobile"
+      class="form-control"
+      required
+      pattern="^[0-9]{10}$"
+      placeholder="Mobile Number"
+      [(ngModel)]="mobile"
+      #mobileRef="ngModel"
+    />
+  </div>
+  <div
+    *ngIf="mobileRef.invalid && (mobileRef.dirty || mobileRef.touched)"
+    class="text-danger small mt-1"
+  >
+    Enter a valid 10-digit mobile number.
+  </div>
+</div>
 
       <!-- Address -->
       <div class="mb-3">
