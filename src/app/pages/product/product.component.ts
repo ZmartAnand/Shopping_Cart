@@ -15,7 +15,9 @@ export class ProductComponent {
   product = {
     name: "",
     description: "",
-    price: null,
+    price: "",
+    rating: "",
+    reviews: "",
     image: "",
   };
 
