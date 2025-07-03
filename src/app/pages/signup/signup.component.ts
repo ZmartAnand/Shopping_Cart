@@ -3,7 +3,7 @@ import { Router } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 import { AuthService } from "../../services/auth.service";
-
+import { PhoneNumberUtil } from 'google-libphonenumber';
 @Component({
   selector: "app-signup",
   standalone: true,
@@ -20,12 +20,52 @@ export class SignupComponent {
   password = "";
   confirmPassword = "";
   countryCode: string = '+91';
-
   constructor(
     private router: Router,
     private login: Router,
     private auth: AuthService
   ) {}
+
+
+  phoneUtil = PhoneNumberUtil.getInstance();
+
+  // Map region to country code for reverse mapping
+  allowedRegions: string[] = ['IN', 'US', 'AE', 'AU', 'GB'];
+
+regionToDialCode: Record<string, string> = {
+  IN: '+91',
+  US: '+1',
+  AE: '+971',
+  AU: '+61',
+  GB: '+44',
+  QA: '+974',
+};
+
+  onMobileChange() {
+    try {
+      let number;
+  
+      // If number starts with '+', parse without default region
+      if (this.mobile.startsWith('+')) {
+        number = this.phoneUtil.parse(this.mobile);
+      } else {
+        // Default to 'IN' for parsing
+        number = this.phoneUtil.parse(this.mobile, 'IN');
+      }
+  
+      const regionCode = this.phoneUtil.getRegionCodeForNumber(number);
+  
+      if (
+        regionCode &&
+        this.allowedRegions.includes(regionCode) &&
+        this.regionToDialCode[regionCode]
+      ) {
+        this.countryCode = this.regionToDialCode[regionCode];
+      }
+    } catch (error) {
+      // invalid number; skip
+    }
+  }
 
   signup() {
     if (this.password !== this.confirmPassword) {
