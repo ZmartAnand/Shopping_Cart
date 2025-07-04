@@ -10,7 +10,7 @@ export class CartService {
   cartCount$ = this.cartCountSubject.asObservable();
   constructor() {
     const user = JSON.parse(localStorage.getItem("currentUser") || "[]");
-    this.loadUserCart(user.username);
+    this.loadUserCart(user.email);
   }
 
   getCartItems() {
@@ -31,9 +31,9 @@ export class CartService {
 
   saveCartItemsToLocal() {
     const user = JSON.parse(localStorage.getItem("currentUser") || "[]");
-    if (user?.username) {
+    if (user?.email) {
       localStorage.setItem(
-        `cart_${user.username}`,
+        `cart_${user.email}`,
         JSON.stringify(this.cartItems)
       );
     }
@@ -47,6 +47,7 @@ export class CartService {
   }
 
   loadUserCart(email: string) {
+    console.log('get',email)
     const savedCart = localStorage.getItem(`cart_${email}`);
     console.log("saved", savedCart);
     this.cartItems = savedCart ? JSON.parse(savedCart) : [];
