@@ -12,6 +12,7 @@ import { authGuard } from "./auth.guard";
 import { ForgotPasswordComponent } from "./pages/forgot-password/forgot-password.component";
 import { loginGuard } from "./login.guard";
 import { ProductDetailsComponent } from "./pages/product-details/product-details.component";
+import { ResetPasswordComponent } from "./pages/reset-password/reset-password.component";
 export const routes: Routes = [
   { path: "", redirectTo: "login", pathMatch: "full" },
   { path: "signup", component: SignupComponent, canActivate: [loginGuard] },
@@ -36,4 +37,8 @@ export const routes: Routes = [
     component: OrderSuccessComponent,
     canActivate: [authGuard],
   },
+  {
+    path: 'reset-password',
+    component: ResetPasswordComponent
+  }
 ];

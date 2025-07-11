@@ -91,8 +91,8 @@ regionToDialCode: Record<string, string> = {
 
           localStorage.setItem("currentUser", JSON.stringify(userData));
 
-          alert("Welcome to ASShopping Cart");
-          this.router.navigate(["/home"]);
+          // alert("Welcome to ASShopping Cart");
+          this.router.navigate(["/login"]);
         })
         .catch((error) => {
           if (error.code === "auth/email-already-in-use") {
